@@ -12,4 +12,4 @@ Packaging Application for Heroku
     bundle install 
     bundle exec ruby server.rb
 
-2. Created Procfile, used by heroku to start the app.
+2. Created Procfile, used by heroku to start the app. Can run 'foreman start' to start the app

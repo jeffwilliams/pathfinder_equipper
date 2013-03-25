@@ -32,132 +32,132 @@
   <item Cost="1 sp" Weight="1 lb." Name="Lamp, common" copper_cost="10" halfpound_weight="2"/>
   <item Cost="12 gp" Weight="3 lbs." Name="Lantern, bullseye" copper_cost="1200" halfpound_weight="6"/>
   <item Cost="7 gp" Weight="2 lbs." Name="Lantern, hooded" copper_cost="700" halfpound_weight="4"/>
-  <item Cost="20 gp" Weight="1 lb." Name="Lock, Simple" copper_cost="2000" halfpound_weight="2"/>
-  <item Cost="40 gp" Weight="1 lb." Name="Lock, Average" copper_cost="4000" halfpound_weight="2"/>
-  <item Cost="80 gp" Weight="1 lb." Name="Lock, Good" copper_cost="8000" halfpound_weight="2"/>
-  <item Cost="150 gp" Weight="1 lb." Name="Lock, Superior" copper_cost="15000" halfpound_weight="2"/>
-  <item Cost="15 gp" Weight="2 lbs." Name="Manacles" copper_cost="1500" halfpound_weight="4"/>
-  <item Cost="50 gp" Weight="2 lbs." Name="Manacles, masterwork" copper_cost="5000" halfpound_weight="4"/>
-  <item Cost="10 gp" Weight="1/2 lb." Name="Mirror, small steel" copper_cost="1000" halfpound_weight="1"/>
-  <item Cost="2 cp" Weight="1 lbs." Name="Mug/Tankard, clay" copper_cost="2" halfpound_weight="2"/>
-  <item Cost="1 sp" Weight="1 lbs." Name="Oil (1-pint flask)" copper_cost="10" halfpound_weight="2"/>
-  <item Cost="4 sp" Weight="&amp;mdash;" Name="Paper (sheet)" copper_cost="40" halfpound_weight="0"/>
-  <item Cost="2 sp" Weight="&amp;mdash;" Name="Parchment (sheet)" copper_cost="20" halfpound_weight="0"/>
-  <item Cost="3 gp" Weight="10 lbs." Name="Pick, miner's" copper_cost="300" halfpound_weight="20"/>
-  <item Cost="2 cp" Weight="5 lbs." Name="Pitcher, clay" copper_cost="2" halfpound_weight="10"/>
-  <item Cost="1 sp" Weight="1/2 lb." Name="Piton" copper_cost="10" halfpound_weight="1"/>
-  <item Cost="5 cp" Weight="8 lbs." Name="Pole, 10-foot" copper_cost="5" halfpound_weight="16"/>
-  <item Cost="8 sp" Weight="4 lbs." Name="Pot, iron" copper_cost="80" halfpound_weight="8"/>
-  <item Cost="1 gp" Weight="1/2 lb." Name="Pouch, belt (empty)" copper_cost="100" halfpound_weight="1"/>
-  <item Cost="10 gp" Weight="20 lbs." Name="Ram, portable" copper_cost="1000" halfpound_weight="40"/>
-  <item Cost="5 sp" Weight="1 lb." Name="Rations, trail (per day)" copper_cost="50" halfpound_weight="2"/>
-  <item Cost="1 gp" Weight="10 lbs." Name="Rope, hemp (50 ft.)" copper_cost="100" halfpound_weight="20"/>
-  <item Cost="10 gp" Weight="5 lbs." Name="Rope, silk (50 ft.)" copper_cost="1000" halfpound_weight="10"/>
-  <item Cost="1 sp" Weight="1/2 lb." Name="Sack (empty)" copper_cost="10" halfpound_weight="1"/>
-  <item Cost="1 gp" Weight="1 lbs." Name="Sealing wax" copper_cost="100" halfpound_weight="2"/>
-  <item Cost="5 sp" Weight="&amp;mdash;" Name="Sewing needle" copper_cost="50" halfpound_weight="0"/>
-  <item Cost="2 gp" Weight="8 lbs." Name="Shovel or spade" copper_cost="200" halfpound_weight="16"/>
-  <item Cost="8 sp" Weight="&amp;mdash;" Name="Signal whistle" copper_cost="80" halfpound_weight="0"/>
-  <item Cost="5 gp" Weight="&amp;mdash;" Name="Signet ring" copper_cost="500" halfpound_weight="0"/>
-  <item Cost="1 gp" Weight="10 lbs." Name="Sledge" copper_cost="100" halfpound_weight="20"/>
-  <item Cost="5 sp" Weight="1 lb." Name="Soap (per lb.)" copper_cost="50" halfpound_weight="2"/>
-  <item Cost="1,000 gp" Weight="1 lb." Name="Spyglass" copper_cost="100000" halfpound_weight="2"/>
-  <item Cost="10 gp" Weight="20 lbs." Name="Tent" copper_cost="1000" halfpound_weight="40"/>
-  <item Cost="1 cp" Weight="1 lb." Name="Torch" copper_cost="1" halfpound_weight="2"/>
-  <item Cost="1 gp" Weight="&amp;mdash;" Name="Vial, ink or potion" copper_cost="100" halfpound_weight="0"/>
-  <item Cost="1,000 gp" Weight="200 lbs." Name="Water clock" copper_cost="100000" halfpound_weight="400"/>
-  <item Cost="1 gp" Weight="4 lbs." Name="Waterskin" copper_cost="100" halfpound_weight="8"/>
-  <item Cost="2 cp" Weight="1 lbs." Name="Whetstone" copper_cost="2" halfpound_weight="2"/>
-  <item Cost="Cost" Weight="Weight" Name="Item" copper_cost="0" halfpound_weight="0"/>
-  <item Cost="10 gp" Weight="1 lb." Name="Acid (flask)" copper_cost="1000" halfpound_weight="2"/>
-  <item Cost="20 gp" Weight="1 lb." Name="Alchemist's fire (flask)" copper_cost="2000" halfpound_weight="2"/>
-  <item Cost="50 gp" Weight="&amp;mdash;" Name="Antitoxin (vial)" copper_cost="5000" halfpound_weight="0"/>
-  <item Cost="110 gp" Weight="1 lb." Name="Everburning torch" copper_cost="11000" halfpound_weight="2"/>
-  <item Cost="25 gp" Weight="1 lb." Name="Holy water (flask)" copper_cost="2500" halfpound_weight="2"/>
-  <item Cost="20 gp" Weight="1/2 lb." Name="Smokestick" copper_cost="2000" halfpound_weight="1"/>
-  <item Cost="2 gp" Weight="1 lb." Name="Sunrod" copper_cost="200" halfpound_weight="2"/>
-  <item Cost="50 gp" Weight="4 lbs." Name="Tanglefoot bag" copper_cost="5000" halfpound_weight="8"/>
-  <item Cost="30 gp" Weight="1 lb." Name="Thunderstone" copper_cost="3000" halfpound_weight="2"/>
-  <item Cost="1 gp" Weight="&amp;mdash;" Name="Tindertwig" copper_cost="100" halfpound_weight="0"/>
-  <item Cost="Cost" Weight="Weight" Name="Item" copper_cost="0" halfpound_weight="0"/>
-  <item Cost="200 gp" Weight="40 lbs." Name="Alchemist's lab" copper_cost="20000" halfpound_weight="80"/>
-  <item Cost="5 gp" Weight="5 lbs." Name="Artisan's tools" copper_cost="500" halfpound_weight="10"/>
-  <item Cost="55 gp" Weight="5 lbs." Name="Artisan's tools, masterwork" copper_cost="5500" halfpound_weight="10"/>
-  <item Cost="80 gp" Weight="5 lbs." Name="Climber's kit" copper_cost="8000" halfpound_weight="10"/>
-  <item Cost="50 gp" Weight="8 lbs." Name="Disguise kit" copper_cost="5000" halfpound_weight="16"/>
-  <item Cost="50 gp" Weight="1 lb." Name="Healer's kit" copper_cost="5000" halfpound_weight="2"/>
-  <item Cost="&amp;mdash;" Weight="&amp;mdash;" Name="Holly and mistletoe" copper_cost="0" halfpound_weight="0"/>
-  <item Cost="1 gp" Weight="&amp;mdash;" Name="Holy symbol, wooden" copper_cost="100" halfpound_weight="0"/>
-  <item Cost="25 gp" Weight="1 lb." Name="Holy symbol, silver" copper_cost="2500" halfpound_weight="2"/>
-  <item Cost="100 gp" Weight="&amp;mdash;" Name="Magnifying glass" copper_cost="10000" halfpound_weight="0"/>
-  <item Cost="5 gp" Weight="3 lbs." Name="Musical instrument, common" copper_cost="500" halfpound_weight="6"/>
-  <item Cost="100 gp" Weight="3 lbs." Name="Musical instrument, masterwork" copper_cost="10000" halfpound_weight="6"/>
-  <item Cost="2 gp" Weight="1 lb." Name="Scale, merchant's" copper_cost="200" halfpound_weight="2"/>
-  <item Cost="5 gp" Weight="2 lbs." Name="Spell component pouch" copper_cost="500" halfpound_weight="4"/>
-  <item Cost="15 gp" Weight="3 lbs." Name="Spellbook, wizard's (blank)" copper_cost="1500" halfpound_weight="6"/>
-  <item Cost="30 gp" Weight="1 lb." Name="Thieves' tools" copper_cost="3000" halfpound_weight="2"/>
-  <item Cost="100 gp" Weight="2 lbs." Name="Thieves' tools, masterwork" copper_cost="10000" halfpound_weight="4"/>
-  <item Cost="50 gp" Weight="1 lb." Name="Tool, masterwork" copper_cost="5000" halfpound_weight="2"/>
-  <item Cost="Cost" Weight="Weight" Name="Item" copper_cost="0" halfpound_weight="0"/>
-  <item Cost="1 gp" Weight="4 lbs." Name="Artisan's outfit" copper_cost="100" halfpound_weight="8"/>
-  <item Cost="5 gp" Weight="6 lbs." Name="Cleric's vestments" copper_cost="500" halfpound_weight="12"/>
-  <item Cost="8 gp" Weight="7 lbs." Name="Cold-weather outfit" copper_cost="800" halfpound_weight="14"/>
-  <item Cost="30 gp" Weight="6 lbs." Name="Courtier's outfit" copper_cost="3000" halfpound_weight="12"/>
-  <item Cost="3 gp" Weight="4 lbs." Name="Entertainer's outfit" copper_cost="300" halfpound_weight="8"/>
-  <item Cost="10 gp" Weight="8 lbs." Name="Explorer's outfit" copper_cost="1000" halfpound_weight="16"/>
-  <item Cost="5 gp" Weight="2 lbs." Name="Monk's outfit" copper_cost="500" halfpound_weight="4"/>
-  <item Cost="75 gp" Weight="10 lbs." Name="Noble's outfit" copper_cost="7500" halfpound_weight="20"/>
-  <item Cost="1 sp" Weight="2 lbs." Name="Peasant's outfit" copper_cost="10" halfpound_weight="4"/>
-  <item Cost="200 gp" Weight="15 lbs." Name="Royal outfit" copper_cost="20000" halfpound_weight="30"/>
-  <item Cost="5 gp" Weight="6 lbs." Name="Scholar's outfit" copper_cost="500" halfpound_weight="12"/>
-  <item Cost="1 gp" Weight="5 lbs." Name="Traveler's outfit" copper_cost="100" halfpound_weight="10"/>
-  <item Cost="Cost" Weight="Weight" Name="Item" copper_cost="0" halfpound_weight="0"/>
-  <item Cost="2 sp" Weight="8 lbs." Name="Ale, Gallon" copper_cost="20" halfpound_weight="16"/>
-  <item Cost="4 cp" Weight="1 lb." Name="Ale, Mug" copper_cost="4" halfpound_weight="2"/>
-  <item Cost="10 gp" Weight="&amp;mdash;" Name="Banquet (per person)" copper_cost="1000" halfpound_weight="0"/>
-  <item Cost="2 cp" Weight="1/2 lb." Name="Bread, loaf of" copper_cost="2" halfpound_weight="1"/>
-  <item Cost="1 sp" Weight="1/2 lb." Name="Cheese, hunk of" copper_cost="10" halfpound_weight="1"/>
-  <item Cost="2 gp" Weight="&amp;mdash;" Name="Inn stay (per day), Good" copper_cost="200" halfpound_weight="0"/>
-  <item Cost="5 sp" Weight="&amp;mdash;" Name="Inn stay (per day), Common" copper_cost="50" halfpound_weight="0"/>
-  <item Cost="2 sp" Weight="&amp;mdash;" Name="Inn stay (per day), Poor" copper_cost="20" halfpound_weight="0"/>
-  <item Cost="5 sp" Weight="&amp;mdash;" Name="Meals (per day), Good" copper_cost="50" halfpound_weight="0"/>
-  <item Cost="3 sp" Weight="&amp;mdash;" Name="Meals (per day), Common" copper_cost="30" halfpound_weight="0"/>
-  <item Cost="1 sp" Weight="&amp;mdash;" Name="Meals (per day), Poor" copper_cost="10" halfpound_weight="0"/>
-  <item Cost="3 sp" Weight="1/2 lb." Name="Meat, chunk of" copper_cost="30" halfpound_weight="1"/>
-  <item Cost="2 sp" Weight="6 lbs." Name="Wine, Common (pitcher)" copper_cost="20" halfpound_weight="12"/>
-  <item Cost="10 gp" Weight="1-1/2 lbs." Name="Wine, Fine (bottle)" copper_cost="1000" halfpound_weight="3"/>
-  <item Cost="Cost" Weight="Weight" Name="Item" copper_cost="0" halfpound_weight="0"/>
-  <item Cost="&amp;times;2" Weight="&amp;times;1" Name="Barding, Medium creature" copper_cost="0" halfpound_weight="0"/>
-  <item Cost="&amp;times;4" Weight="&amp;times;2" Name="Barding, Large creature" copper_cost="0" halfpound_weight="0"/>
-  <item Cost="2 gp" Weight="1 lb." Name="Bit and bridle" copper_cost="200" halfpound_weight="2"/>
-  <item Cost="25 gp" Weight="&amp;mdash;" Name="Dog, guard" copper_cost="2500" halfpound_weight="0"/>
-  <item Cost="150 gp" Weight="&amp;mdash;" Name="Dog, riding" copper_cost="15000" halfpound_weight="0"/>
-  <item Cost="8 gp" Weight="&amp;mdash;" Name="Donkey or mule" copper_cost="800" halfpound_weight="0"/>
-  <item Cost="5 cp" Weight="10 lbs." Name="Feed (per day)" copper_cost="5" halfpound_weight="20"/>
-  <item Cost="200 gp" Weight="&amp;mdash;" Name="Horse, Horse, heavy" copper_cost="20000" halfpound_weight="0"/>
-  <item Cost="300 gp" Weight="&amp;mdash;" Name="Horse, &lt;nobr&gt;Horse, heavy&lt;/nobr&gt;&lt;nobr&gt;(combat trained)&lt;/nobr&gt;" copper_cost="30000" halfpound_weight="0"/>
-  <item Cost="75 gp" Weight="&amp;mdash;" Name="Horse, Horse, light" copper_cost="7500" halfpound_weight="0"/>
-  <item Cost="110 gp" Weight="&amp;mdash;" Name="Horse, &lt;nobr&gt;Horse, light&lt;/nobr&gt;&lt;nobr&gt;(combat trained)&lt;/nobr&gt;" copper_cost="11000" halfpound_weight="0"/>
-  <item Cost="30 gp" Weight="&amp;mdash;" Name="Horse, Pony" copper_cost="3000" halfpound_weight="0"/>
-  <item Cost="45 gp" Weight="&amp;mdash;" Name="Horse, Pony (combat trained)" copper_cost="4500" halfpound_weight="0"/>
-  <item Cost="20 gp" Weight="30 lbs." Name="Saddle, Military" copper_cost="2000" halfpound_weight="60"/>
-  <item Cost="5 gp" Weight="15 lbs." Name="Saddle, Pack" copper_cost="500" halfpound_weight="30"/>
-  <item Cost="10 gp" Weight="25 lbs." Name="Saddle, Riding" copper_cost="1000" halfpound_weight="50"/>
-  <item Cost="60 gp" Weight="40 lbs." Name="Saddle, Exotic, Military" copper_cost="6000" halfpound_weight="80"/>
-  <item Cost="15 gp" Weight="20 lbs." Name="Saddle, Exotic, Pack" copper_cost="1500" halfpound_weight="40"/>
-  <item Cost="30 gp" Weight="30 lbs." Name="Saddle, Exotic, Riding" copper_cost="3000" halfpound_weight="60"/>
-  <item Cost="4 gp" Weight="8 lbs." Name="Saddlebags" copper_cost="400" halfpound_weight="16"/>
-  <item Cost="5 sp" Weight="&amp;mdash;" Name="Stabling (per day)" copper_cost="50" halfpound_weight="0"/>
-  <item Cost="Cost" Weight="Weight" Name="Item" copper_cost="0" halfpound_weight="0"/>
-  <item Cost="100 gp" Weight="600 lbs." Name="Carriage" copper_cost="10000" halfpound_weight="1200"/>
-  <item Cost="15 gp" Weight="200 lbs." Name="Cart" copper_cost="1500" halfpound_weight="400"/>
-  <item Cost="30,000 gp" Weight="&amp;mdash;" Name="Galley" copper_cost="3000000" halfpound_weight="0"/>
-  <item Cost="3,000 gp" Weight="&amp;mdash;" Name="Keelboat" copper_cost="300000" halfpound_weight="0"/>
-  <item Cost="10,000 gp" Weight="&amp;mdash;" Name="Longship" copper_cost="1000000" halfpound_weight="0"/>
-  <item Cost="50 gp" Weight="100 lbs." Name="Rowboat" copper_cost="5000" halfpound_weight="200"/>
-  <item Cost="2 gp" Weight="10 lbs." Name="Oar" copper_cost="200" halfpound_weight="20"/>
-  <item Cost="10,000 gp" Weight="&amp;mdash;" Name="Sailing ship" copper_cost="1000000" halfpound_weight="0"/>
-  <item Cost="20 gp" Weight="300 lbs." Name="Sled" copper_cost="2000" halfpound_weight="600"/>
-  <item Cost="35 gp" Weight="400 lbs." Name="Wagon" copper_cost="3500" halfpound_weight="800"/>
-  <item Cost="25,000 gp" Weight="&amp;mdash;" Name="Warship" copper_cost="2500000" halfpound_weight="0"/>
+  <item Cost="20 gp" Weight="1 lb." last_parent="Lock" Name="Lock, Simple" copper_cost="2000" halfpound_weight="2"/>
+  <item Cost="40 gp" Weight="1 lb." last_parent="Lock" Name="Lock, Average" copper_cost="4000" halfpound_weight="2"/>
+  <item Cost="80 gp" Weight="1 lb." last_parent="Lock" Name="Lock, Good" copper_cost="8000" halfpound_weight="2"/>
+  <item Cost="150 gp" Weight="1 lb." last_parent="Lock" Name="Lock, Superior" copper_cost="15000" halfpound_weight="2"/>
+  <item Cost="15 gp" Weight="2 lbs." last_parent="Lock" Name="Manacles" copper_cost="1500" halfpound_weight="4"/>
+  <item Cost="50 gp" Weight="2 lbs." last_parent="Lock" Name="Manacles, masterwork" copper_cost="5000" halfpound_weight="4"/>
+  <item Cost="10 gp" Weight="1/2 lb." last_parent="Lock" Name="Mirror, small steel" copper_cost="1000" halfpound_weight="1"/>
+  <item Cost="2 cp" Weight="1 lbs." last_parent="Lock" Name="Mug/Tankard, clay" copper_cost="2" halfpound_weight="2"/>
+  <item Cost="1 sp" Weight="1 lbs." last_parent="Lock" Name="Oil (1-pint flask)" copper_cost="10" halfpound_weight="2"/>
+  <item Cost="4 sp" Weight="&amp;mdash;" last_parent="Lock" Name="Paper (sheet)" copper_cost="40" halfpound_weight="0"/>
+  <item Cost="2 sp" Weight="&amp;mdash;" last_parent="Lock" Name="Parchment (sheet)" copper_cost="20" halfpound_weight="0"/>
+  <item Cost="3 gp" Weight="10 lbs." last_parent="Lock" Name="Pick, miner's" copper_cost="300" halfpound_weight="20"/>
+  <item Cost="2 cp" Weight="5 lbs." last_parent="Lock" Name="Pitcher, clay" copper_cost="2" halfpound_weight="10"/>
+  <item Cost="1 sp" Weight="1/2 lb." last_parent="Lock" Name="Piton" copper_cost="10" halfpound_weight="1"/>
+  <item Cost="5 cp" Weight="8 lbs." last_parent="Lock" Name="Pole, 10-foot" copper_cost="5" halfpound_weight="16"/>
+  <item Cost="8 sp" Weight="4 lbs." last_parent="Lock" Name="Pot, iron" copper_cost="80" halfpound_weight="8"/>
+  <item Cost="1 gp" Weight="1/2 lb." last_parent="Lock" Name="Pouch, belt (empty)" copper_cost="100" halfpound_weight="1"/>
+  <item Cost="10 gp" Weight="20 lbs." last_parent="Lock" Name="Ram, portable" copper_cost="1000" halfpound_weight="40"/>
+  <item Cost="5 sp" Weight="1 lb." last_parent="Lock" Name="Rations, trail (per day)" copper_cost="50" halfpound_weight="2"/>
+  <item Cost="1 gp" Weight="10 lbs." last_parent="Lock" Name="Rope, hemp (50 ft.)" copper_cost="100" halfpound_weight="20"/>
+  <item Cost="10 gp" Weight="5 lbs." last_parent="Lock" Name="Rope, silk (50 ft.)" copper_cost="1000" halfpound_weight="10"/>
+  <item Cost="1 sp" Weight="1/2 lb." last_parent="Lock" Name="Sack (empty)" copper_cost="10" halfpound_weight="1"/>
+  <item Cost="1 gp" Weight="1 lbs." last_parent="Lock" Name="Sealing wax" copper_cost="100" halfpound_weight="2"/>
+  <item Cost="5 sp" Weight="&amp;mdash;" last_parent="Lock" Name="Sewing needle" copper_cost="50" halfpound_weight="0"/>
+  <item Cost="2 gp" Weight="8 lbs." last_parent="Lock" Name="Shovel or spade" copper_cost="200" halfpound_weight="16"/>
+  <item Cost="8 sp" Weight="&amp;mdash;" last_parent="Lock" Name="Signal whistle" copper_cost="80" halfpound_weight="0"/>
+  <item Cost="5 gp" Weight="&amp;mdash;" last_parent="Lock" Name="Signet ring" copper_cost="500" halfpound_weight="0"/>
+  <item Cost="1 gp" Weight="10 lbs." last_parent="Lock" Name="Sledge" copper_cost="100" halfpound_weight="20"/>
+  <item Cost="5 sp" Weight="1 lb." last_parent="Lock" Name="Soap (per lb.)" copper_cost="50" halfpound_weight="2"/>
+  <item Cost="1,000 gp" Weight="1 lb." last_parent="Lock" Name="Spyglass" copper_cost="100000" halfpound_weight="2"/>
+  <item Cost="10 gp" Weight="20 lbs." last_parent="Lock" Name="Tent" copper_cost="1000" halfpound_weight="40"/>
+  <item Cost="1 cp" Weight="1 lb." last_parent="Lock" Name="Torch" copper_cost="1" halfpound_weight="2"/>
+  <item Cost="1 gp" Weight="&amp;mdash;" last_parent="Lock" Name="Vial, ink or potion" copper_cost="100" halfpound_weight="0"/>
+  <item Cost="1,000 gp" Weight="200 lbs." last_parent="Lock" Name="Water clock" copper_cost="100000" halfpound_weight="400"/>
+  <item Cost="1 gp" Weight="4 lbs." last_parent="Lock" Name="Waterskin" copper_cost="100" halfpound_weight="8"/>
+  <item Cost="2 cp" Weight="1 lbs." last_parent="Lock" Name="Whetstone" copper_cost="2" halfpound_weight="2"/>
+  <item Cost="Cost" Weight="Weight" last_parent="Special Substances and Items" Name="Item" copper_cost="0" halfpound_weight="0"/>
+  <item Cost="10 gp" Weight="1 lb." last_parent="Special Substances and Items" Name="Acid (flask)" copper_cost="1000" halfpound_weight="2"/>
+  <item Cost="20 gp" Weight="1 lb." last_parent="Special Substances and Items" Name="Alchemist's fire (flask)" copper_cost="2000" halfpound_weight="2"/>
+  <item Cost="50 gp" Weight="&amp;mdash;" last_parent="Special Substances and Items" Name="Antitoxin (vial)" copper_cost="5000" halfpound_weight="0"/>
+  <item Cost="110 gp" Weight="1 lb." last_parent="Special Substances and Items" Name="Everburning torch" copper_cost="11000" halfpound_weight="2"/>
+  <item Cost="25 gp" Weight="1 lb." last_parent="Special Substances and Items" Name="Holy water (flask)" copper_cost="2500" halfpound_weight="2"/>
+  <item Cost="20 gp" Weight="1/2 lb." last_parent="Special Substances and Items" Name="Smokestick" copper_cost="2000" halfpound_weight="1"/>
+  <item Cost="2 gp" Weight="1 lb." last_parent="Special Substances and Items" Name="Sunrod" copper_cost="200" halfpound_weight="2"/>
+  <item Cost="50 gp" Weight="4 lbs." last_parent="Special Substances and Items" Name="Tanglefoot bag" copper_cost="5000" halfpound_weight="8"/>
+  <item Cost="30 gp" Weight="1 lb." last_parent="Special Substances and Items" Name="Thunderstone" copper_cost="3000" halfpound_weight="2"/>
+  <item Cost="1 gp" Weight="&amp;mdash;" last_parent="Special Substances and Items" Name="Tindertwig" copper_cost="100" halfpound_weight="0"/>
+  <item Cost="Cost" Weight="Weight" last_parent="Tools and Skill Kits" Name="Item" copper_cost="0" halfpound_weight="0"/>
+  <item Cost="200 gp" Weight="40 lbs." last_parent="Tools and Skill Kits" Name="Alchemist's lab" copper_cost="20000" halfpound_weight="80"/>
+  <item Cost="5 gp" Weight="5 lbs." last_parent="Tools and Skill Kits" Name="Artisan's tools" copper_cost="500" halfpound_weight="10"/>
+  <item Cost="55 gp" Weight="5 lbs." last_parent="Tools and Skill Kits" Name="Artisan's tools, masterwork" copper_cost="5500" halfpound_weight="10"/>
+  <item Cost="80 gp" Weight="5 lbs." last_parent="Tools and Skill Kits" Name="Climber's kit" copper_cost="8000" halfpound_weight="10"/>
+  <item Cost="50 gp" Weight="8 lbs." last_parent="Tools and Skill Kits" Name="Disguise kit" copper_cost="5000" halfpound_weight="16"/>
+  <item Cost="50 gp" Weight="1 lb." last_parent="Tools and Skill Kits" Name="Healer's kit" copper_cost="5000" halfpound_weight="2"/>
+  <item Cost="&amp;mdash;" Weight="&amp;mdash;" last_parent="Tools and Skill Kits" Name="Holly and mistletoe" copper_cost="0" halfpound_weight="0"/>
+  <item Cost="1 gp" Weight="&amp;mdash;" last_parent="Tools and Skill Kits" Name="Holy symbol, wooden" copper_cost="100" halfpound_weight="0"/>
+  <item Cost="25 gp" Weight="1 lb." last_parent="Tools and Skill Kits" Name="Holy symbol, silver" copper_cost="2500" halfpound_weight="2"/>
+  <item Cost="100 gp" Weight="&amp;mdash;" last_parent="Tools and Skill Kits" Name="Magnifying glass" copper_cost="10000" halfpound_weight="0"/>
+  <item Cost="5 gp" Weight="3 lbs." last_parent="Tools and Skill Kits" Name="Musical instrument, common" copper_cost="500" halfpound_weight="6"/>
+  <item Cost="100 gp" Weight="3 lbs." last_parent="Tools and Skill Kits" Name="Musical instrument, masterwork" copper_cost="10000" halfpound_weight="6"/>
+  <item Cost="2 gp" Weight="1 lb." last_parent="Tools and Skill Kits" Name="Scale, merchant's" copper_cost="200" halfpound_weight="2"/>
+  <item Cost="5 gp" Weight="2 lbs." last_parent="Tools and Skill Kits" Name="Spell component pouch" copper_cost="500" halfpound_weight="4"/>
+  <item Cost="15 gp" Weight="3 lbs." last_parent="Tools and Skill Kits" Name="Spellbook, wizard's (blank)" copper_cost="1500" halfpound_weight="6"/>
+  <item Cost="30 gp" Weight="1 lb." last_parent="Tools and Skill Kits" Name="Thieves' tools" copper_cost="3000" halfpound_weight="2"/>
+  <item Cost="100 gp" Weight="2 lbs." last_parent="Tools and Skill Kits" Name="Thieves' tools, masterwork" copper_cost="10000" halfpound_weight="4"/>
+  <item Cost="50 gp" Weight="1 lb." last_parent="Tools and Skill Kits" Name="Tool, masterwork" copper_cost="5000" halfpound_weight="2"/>
+  <item Cost="Cost" Weight="Weight" last_parent="Clothing" Name="Item" copper_cost="0" halfpound_weight="0"/>
+  <item Cost="1 gp" Weight="4 lbs." last_parent="Clothing" Name="Artisan's outfit" copper_cost="100" halfpound_weight="8"/>
+  <item Cost="5 gp" Weight="6 lbs." last_parent="Clothing" Name="Cleric's vestments" copper_cost="500" halfpound_weight="12"/>
+  <item Cost="8 gp" Weight="7 lbs." last_parent="Clothing" Name="Cold-weather outfit" copper_cost="800" halfpound_weight="14"/>
+  <item Cost="30 gp" Weight="6 lbs." last_parent="Clothing" Name="Courtier's outfit" copper_cost="3000" halfpound_weight="12"/>
+  <item Cost="3 gp" Weight="4 lbs." last_parent="Clothing" Name="Entertainer's outfit" copper_cost="300" halfpound_weight="8"/>
+  <item Cost="10 gp" Weight="8 lbs." last_parent="Clothing" Name="Explorer's outfit" copper_cost="1000" halfpound_weight="16"/>
+  <item Cost="5 gp" Weight="2 lbs." last_parent="Clothing" Name="Monk's outfit" copper_cost="500" halfpound_weight="4"/>
+  <item Cost="75 gp" Weight="10 lbs." last_parent="Clothing" Name="Noble's outfit" copper_cost="7500" halfpound_weight="20"/>
+  <item Cost="1 sp" Weight="2 lbs." last_parent="Clothing" Name="Peasant's outfit" copper_cost="10" halfpound_weight="4"/>
+  <item Cost="200 gp" Weight="15 lbs." last_parent="Clothing" Name="Royal outfit" copper_cost="20000" halfpound_weight="30"/>
+  <item Cost="5 gp" Weight="6 lbs." last_parent="Clothing" Name="Scholar's outfit" copper_cost="500" halfpound_weight="12"/>
+  <item Cost="1 gp" Weight="5 lbs." last_parent="Clothing" Name="Traveler's outfit" copper_cost="100" halfpound_weight="10"/>
+  <item Cost="Cost" Weight="Weight" last_parent="Food, Drink, and Lodging" Name="Item" copper_cost="0" halfpound_weight="0"/>
+  <item Cost="2 sp" Weight="8 lbs." last_parent="Ale" Name="Ale, Gallon" copper_cost="20" halfpound_weight="16"/>
+  <item Cost="4 cp" Weight="1 lb." last_parent="Ale" Name="Ale, Mug" copper_cost="4" halfpound_weight="2"/>
+  <item Cost="10 gp" Weight="&amp;mdash;" last_parent="Ale" Name="Banquet (per person)" copper_cost="1000" halfpound_weight="0"/>
+  <item Cost="2 cp" Weight="1/2 lb." last_parent="Ale" Name="Bread, loaf of" copper_cost="2" halfpound_weight="1"/>
+  <item Cost="1 sp" Weight="1/2 lb." last_parent="Ale" Name="Cheese, hunk of" copper_cost="10" halfpound_weight="1"/>
+  <item Cost="2 gp" Weight="&amp;mdash;" last_parent="Inn stay (per day)" Name="Inn stay (per day), Good" copper_cost="200" halfpound_weight="0"/>
+  <item Cost="5 sp" Weight="&amp;mdash;" last_parent="Inn stay (per day)" Name="Inn stay (per day), Common" copper_cost="50" halfpound_weight="0"/>
+  <item Cost="2 sp" Weight="&amp;mdash;" last_parent="Inn stay (per day)" Name="Inn stay (per day), Poor" copper_cost="20" halfpound_weight="0"/>
+  <item Cost="5 sp" Weight="&amp;mdash;" last_parent="Meals (per day)" Name="Meals (per day), Good" copper_cost="50" halfpound_weight="0"/>
+  <item Cost="3 sp" Weight="&amp;mdash;" last_parent="Meals (per day)" Name="Meals (per day), Common" copper_cost="30" halfpound_weight="0"/>
+  <item Cost="1 sp" Weight="&amp;mdash;" last_parent="Meals (per day)" Name="Meals (per day), Poor" copper_cost="10" halfpound_weight="0"/>
+  <item Cost="3 sp" Weight="1/2 lb." last_parent="Meals (per day)" Name="Meat, chunk of" copper_cost="30" halfpound_weight="1"/>
+  <item Cost="2 sp" Weight="6 lbs." last_parent="Wine" Name="Wine, Common (pitcher)" copper_cost="20" halfpound_weight="12"/>
+  <item Cost="10 gp" Weight="1-1/2 lbs." last_parent="Wine" Name="Wine, Fine (bottle)" copper_cost="1000" halfpound_weight="3"/>
+  <item Cost="Cost" Weight="Weight" last_parent="Mounts and Related Gear" Name="Item" copper_cost="0" halfpound_weight="0"/>
+  <item Cost="&amp;times;2" Weight="&amp;times;1" last_parent="Barding" Name="Barding, Medium creature" copper_cost="0" halfpound_weight="0"/>
+  <item Cost="&amp;times;4" Weight="&amp;times;2" last_parent="Barding" Name="Barding, Large creature" copper_cost="0" halfpound_weight="0"/>
+  <item Cost="2 gp" Weight="1 lb." last_parent="Barding" Name="Bit and bridle" copper_cost="200" halfpound_weight="2"/>
+  <item Cost="25 gp" Weight="&amp;mdash;" last_parent="Barding" Name="Dog, guard" copper_cost="2500" halfpound_weight="0"/>
+  <item Cost="150 gp" Weight="&amp;mdash;" last_parent="Barding" Name="Dog, riding" copper_cost="15000" halfpound_weight="0"/>
+  <item Cost="8 gp" Weight="&amp;mdash;" last_parent="Barding" Name="Donkey or mule" copper_cost="800" halfpound_weight="0"/>
+  <item Cost="5 cp" Weight="10 lbs." last_parent="Barding" Name="Feed (per day)" copper_cost="5" halfpound_weight="20"/>
+  <item Cost="200 gp" Weight="&amp;mdash;" last_parent="Horse" Name="Horse, Horse, heavy" copper_cost="20000" halfpound_weight="0"/>
+  <item Cost="300 gp" Weight="&amp;mdash;" last_parent="Horse" Name="Horse, &lt;nobr&gt;Horse, heavy&lt;/nobr&gt;&lt;nobr&gt;(combat trained)&lt;/nobr&gt;" copper_cost="30000" halfpound_weight="0"/>
+  <item Cost="75 gp" Weight="&amp;mdash;" last_parent="Horse" Name="Horse, Horse, light" copper_cost="7500" halfpound_weight="0"/>
+  <item Cost="110 gp" Weight="&amp;mdash;" last_parent="Horse" Name="Horse, &lt;nobr&gt;Horse, light&lt;/nobr&gt;&lt;nobr&gt;(combat trained)&lt;/nobr&gt;" copper_cost="11000" halfpound_weight="0"/>
+  <item Cost="30 gp" Weight="&amp;mdash;" last_parent="Horse" Name="Horse, Pony" copper_cost="3000" halfpound_weight="0"/>
+  <item Cost="45 gp" Weight="&amp;mdash;" last_parent="Horse" Name="Horse, Pony (combat trained)" copper_cost="4500" halfpound_weight="0"/>
+  <item Cost="20 gp" Weight="30 lbs." last_parent="Saddle" Name="Saddle, Military" copper_cost="2000" halfpound_weight="60"/>
+  <item Cost="5 gp" Weight="15 lbs." last_parent="Saddle" Name="Saddle, Pack" copper_cost="500" halfpound_weight="30"/>
+  <item Cost="10 gp" Weight="25 lbs." last_parent="Saddle" Name="Saddle, Riding" copper_cost="1000" halfpound_weight="50"/>
+  <item Cost="60 gp" Weight="40 lbs." last_parent="Saddle, Exotic" Name="Saddle, Exotic, Military" copper_cost="6000" halfpound_weight="80"/>
+  <item Cost="15 gp" Weight="20 lbs." last_parent="Saddle, Exotic" Name="Saddle, Exotic, Pack" copper_cost="1500" halfpound_weight="40"/>
+  <item Cost="30 gp" Weight="30 lbs." last_parent="Saddle, Exotic" Name="Saddle, Exotic, Riding" copper_cost="3000" halfpound_weight="60"/>
+  <item Cost="4 gp" Weight="8 lbs." last_parent="Saddle, Exotic" Name="Saddlebags" copper_cost="400" halfpound_weight="16"/>
+  <item Cost="5 sp" Weight="&amp;mdash;" last_parent="Saddle, Exotic" Name="Stabling (per day)" copper_cost="50" halfpound_weight="0"/>
+  <item Cost="Cost" Weight="Weight" last_parent="Transport" Name="Item" copper_cost="0" halfpound_weight="0"/>
+  <item Cost="100 gp" Weight="600 lbs." last_parent="Transport" Name="Carriage" copper_cost="10000" halfpound_weight="1200"/>
+  <item Cost="15 gp" Weight="200 lbs." last_parent="Transport" Name="Cart" copper_cost="1500" halfpound_weight="400"/>
+  <item Cost="30,000 gp" Weight="&amp;mdash;" last_parent="Transport" Name="Galley" copper_cost="3000000" halfpound_weight="0"/>
+  <item Cost="3,000 gp" Weight="&amp;mdash;" last_parent="Transport" Name="Keelboat" copper_cost="300000" halfpound_weight="0"/>
+  <item Cost="10,000 gp" Weight="&amp;mdash;" last_parent="Transport" Name="Longship" copper_cost="1000000" halfpound_weight="0"/>
+  <item Cost="50 gp" Weight="100 lbs." last_parent="Transport" Name="Rowboat" copper_cost="5000" halfpound_weight="200"/>
+  <item Cost="2 gp" Weight="10 lbs." last_parent="Transport" Name="Oar" copper_cost="200" halfpound_weight="20"/>
+  <item Cost="10,000 gp" Weight="&amp;mdash;" last_parent="Transport" Name="Sailing ship" copper_cost="1000000" halfpound_weight="0"/>
+  <item Cost="20 gp" Weight="300 lbs." last_parent="Transport" Name="Sled" copper_cost="2000" halfpound_weight="600"/>
+  <item Cost="35 gp" Weight="400 lbs." last_parent="Transport" Name="Wagon" copper_cost="3500" halfpound_weight="800"/>
+  <item Cost="25,000 gp" Weight="&amp;mdash;" last_parent="Transport" Name="Warship" copper_cost="2500000" halfpound_weight="0"/>
 </equipment>

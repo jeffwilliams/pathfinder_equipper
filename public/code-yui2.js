@@ -10,7 +10,8 @@ var AvailableWeaponFields = [
   'Type',
   'Special',
   'copper_cost',
-  'halfpound_weight'
+  'halfpound_weight',
+  'last_parent'
 ];
 
 // Fields for display
@@ -37,7 +38,8 @@ var AvailableArmorFields = [
   'Speed_20',
   'Weight',
   'copper_cost',
-  'halfpound_weight'
+  'halfpound_weight',
+  'last_parent'
 ];
 
 var AvailableArmorColumns = [
@@ -57,7 +59,8 @@ var AvailableGoodsFields = [
   'Cost',
   'Weight',
   'copper_cost',
-  'halfpound_weight'
+  'halfpound_weight',
+  'last_parent'
 ];
 
 var AvailableGoodsColumns = [
@@ -72,7 +75,8 @@ var SelectedEquipmenFields = [
   'Weight',
   'Type',
   'Qty',
-  'orig_equipment_name'
+  'base_name',
+  'last_parent'
 ];
 
 var SelectedEquipmentColumns = [
@@ -173,11 +177,6 @@ function formatCopperCost(cost){
   var gold = Math.floor(silver / 10);
   silver = silver % 10;
 
-  console.log("formatCopperCost: raw=" + cost);
-  console.log("formatCopperCost: gold=" + gold);
-  console.log("formatCopperCost: silver=" + silver);
-  console.log("formatCopperCost: copper=" + copper);
-
   result = ""
 
   if ( gold > 0 ){
@@ -235,7 +234,12 @@ function convertAvailableRecordToSelectedHash(record, qty, type)
   result['Qty'] = qty;
   result['copper_cost'] = record.getData('copper_cost');
   result['halfpound_weight'] = record.getData('halfpound_weight');
-  result['orig_equipment_name'] =  record.getData('Name'); // This is in case we modify the name; like adding the "Silver" modifier
+  result['base_name']  = record.getData('Name'); // This is in case we modify the name; like adding the "Silver" modifier
+  result['base_copper_cost'] = record.getData('copper_cost');
+  result['base_halfpound_weight'] = record.getData('halfpound_weight');
+  result['modifiers']  = {};
+  result['last_parent']  = record.getData('last_parent');
+console.log("Last parent: " + record.getData('last_parent'));
 
   return result;
 }
@@ -290,11 +294,59 @@ function updateSelectedEquipmentTotals()
 
 /**** Event handlers ****/
 
-function toggleItemModifier(type, args, obj){
-  var checked = this.cfg.getProperty("checked");
-  checked = ! checked;
-  this.cfg.setProperty("checked", checked); 
-  alert('obj');
+function toggleSelectedItemModifier(type, args, obj){
+  //var checked = this.cfg.getProperty("checked");
+  //checked = ! checked;
+  //this.cfg.setProperty("checked", checked); 
+
+  try{
+    // Find the affected equipment rows
+    var selectedRowIds = UI.selectedEquipmentTable.getSelectedRows();
+    var table = UI.selectedEquipmentTable;
+    for(var i = 0; i < selectedRowIds.length; i++) {
+      var record = table.getRecord(selectedRowIds[i]); 
+      data = record.getData();
+      console.log("Making '"+data['Name']+"' " + obj);
+      toggleItemModifier(data, obj);
+      UI.selectedEquipmentTable.updateRow(record, data);
+    }
+  }
+  catch(e) {
+    console.log("toggleItemModifier: exception: " + e); 
+  }
+
+}
+
+function toggleItemModifier(data, modifier)
+{
+  if ( modifier in data.modifiers ){
+    // remove
+    delete data.modifiers[modifier];
+  }
+  else {
+    // add
+    data.modifiers[modifier] = 1;
+  }
+  data['Name'] = getItemNameWithModifiers(data);
+  console.log("Last parent: " + data['last_parent']);  
+}
+
+function getItemNameWithModifiers(data)
+{
+  var result = data['base_name'];
+  if( Object.keys(data.modifiers).length > 0 )
+    result = result + " (";
+  var i = 0;
+  for(var modifier in data.modifiers){
+    if ( i > 0 )
+      result = result + ", ";
+    result = result + modifier;
+    i++;
+  }
+  if( Object.keys(data.modifiers).length > 0 )
+    result = result + ")";
+
+  return result;
 }
 
 /* Add a row to the selected equipment table. If a row with the same Name already exists,
@@ -439,18 +491,15 @@ YAHOO.util.Event.addListener(window, "load", function() {
     var transaction = YAHOO.util.Connect.asyncRequest('POST', "/equipment", new SaveDataCallback(), 
       "data=" + YAHOO.lang.JSON.stringify(getDataTableRows(table)));
   });
-
-  YAHOO.util.Event.addListener("generate_pdf", "click", function(e) {
-    var transaction = YAHOO.util.Connect.asyncRequest('POST', "/make_pdf", new GeneratePdfCallback(), 
-      "data=" + YAHOO.lang.JSON.stringify(getDataTableRows(UI.selectedEquipmentTable)));
-  });
   */
 
   YAHOO.util.Event.addListener("qty", "change", correctNumberInInputField);
  
   // Context menu
+  // Disable the context menu for now
+  /*
   UI.menu = new YAHOO.widget.ContextMenu("available_weapons_menu",{ 
-    trigger: "available_weapons",
+    trigger: "selected_equipment",
     lazyload: true
   });
   UI.menu.addItems([
@@ -458,12 +507,13 @@ YAHOO.util.Event.addListener(window, "load", function() {
       submenu: {
         id: 'modifiers',
         itemdata: [
-          { text: "Silver", onclick: { fn: toggleItemModifier, obj: "silver", checked: false } }
+          { text: "Silver", onclick: { fn: toggleSelectedItemModifier, obj: "silver", checked: false } }
         ]
       }
     },
   ]);
   UI.menu.render(document.body);
+  */
    
 });
 
