@@ -65,6 +65,7 @@ class Extractor
         # that don't make sense without this row. For example there is a header for 'Lock'
         # and then another row for 'Simple'
         parent = node.children.first.inner_html.strip if i == 1
+        hash['last_parent'] = parent.gsub(/<[^>]+>/,'').strip if parent
 
         # Don't pass along "sub-header" rows, like 'Two-Handed Weapons'.
         yield hash if i == header.length
