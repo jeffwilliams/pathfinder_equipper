@@ -7,7 +7,7 @@ require 'nokogiri'
 require 'prawn'
 require 'htmlentities'
 
-settings.port = 5555
+#settings.port = 5555
 
 DynamicDataDir = "dynamic_data"
 
