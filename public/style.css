@@ -1,0 +1,67 @@
+body
+{
+  padding-top: 2em;
+  padding-left: 2em;
+}
+
+.inline
+{
+  float: left;
+  /*display: inline-block;*/
+}
+
+.clear
+{
+  clear: both;
+}
+
+#selected_equipment_holder
+{
+  padding: 5px;
+  border: 1px solid #000000;
+  margin: 5px;
+}
+
+#available_equipment_holder
+{
+  padding: 5px;
+  border: 1px solid #000000;
+  margin: 5px;
+}
+
+#qty
+{
+  width: 2em;
+}
+
+#left_main_col
+{
+  padding-left: 2em;
+  padding-right: 2em;
+  background-color: #F0FFF0;
+  border: 1px solid #408040;
+}
+
+#middle_main_col
+{
+  padding-right: 2em;
+}
+
+#right_main_col
+{
+  padding-left: 2em;
+  padding-right: 2em;
+  vertical-align: top;
+  background-color: #F0F0FF;
+  border: 1px solid #404080;
+}
+
+#left_main_col p
+{
+  font-weight: bold;
+}
+
+#right_main_col p
+{
+  font-weight: bold;
+}

@@ -1,0 +1,15 @@
+
+YUI 2
+
+
+Packaging Application for Heroku
+--------------------------------
+
+1. Created a Gemfile so that bundler knows what the app needs. The Gemfile 
+   lists the gems the application depends on. After this the application
+   can be run locally using:
+  
+    bundle install 
+    bundle exec ruby server.rb
+
+2. Created Procfile, used by heroku to start the app.

@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<equipment>
+  <item Name="Padded" Cost="5 gp" AC_Bonus="+1" Maximum="+8" Check_Penalty="0" Arcane_Failure="5%" Speed_30="30 ft." Speed_20="20 ft." Weight="10 lbs." copper_cost="500" halfpound_weight="20"/>
+  <item Name="Leather" Cost="10 gp" AC_Bonus="+2" Maximum="+6" Check_Penalty="0" Arcane_Failure="10%" Speed_30="30 ft." Speed_20="20 ft." Weight="15 lbs." copper_cost="1000" halfpound_weight="30"/>
+  <item Name="Studded leather" Cost="25 gp" AC_Bonus="+3" Maximum="+5" Check_Penalty="&amp;ndash;1" Arcane_Failure="15%" Speed_30="30 ft." Speed_20="20 ft." Weight="20 lbs." copper_cost="2500" halfpound_weight="40"/>
+  <item Name="Chain shirt" Cost="100 gp" AC_Bonus="+4" Maximum="+4" Check_Penalty="&amp;ndash;2" Arcane_Failure="20%" Speed_30="30 ft." Speed_20="20 ft." Weight="25 lbs." copper_cost="10000" halfpound_weight="50"/>
+  <item Name="Hide" Cost="15 gp" AC_Bonus="+4" Maximum="+4" Check_Penalty="&amp;ndash;3" Arcane_Failure="20%" Speed_30="20 ft." Speed_20="15 ft." Weight="25 lbs." copper_cost="1500" halfpound_weight="50"/>
+  <item Name="Scale mail" Cost="50 gp" AC_Bonus="+5" Maximum="+3" Check_Penalty="&amp;ndash;4" Arcane_Failure="25%" Speed_30="20 ft." Speed_20="15 ft." Weight="30 lbs." copper_cost="5000" halfpound_weight="60"/>
+  <item Name="Chainmail" Cost="150 gp" AC_Bonus="+6" Maximum="+2" Check_Penalty="&amp;ndash;5" Arcane_Failure="30%" Speed_30="20 ft." Speed_20="15 ft." Weight="40 lbs." copper_cost="15000" halfpound_weight="80"/>
+  <item Name="Breastplate" Cost="200 gp" AC_Bonus="+6" Maximum="+3" Check_Penalty="&amp;ndash;4" Arcane_Failure="25%" Speed_30="20 ft." Speed_20="15 ft." Weight="30 lbs." copper_cost="20000" halfpound_weight="60"/>
+  <item Name="Splint mail" Cost="200 gp" AC_Bonus="+7" Maximum="+0" Check_Penalty="&amp;ndash;7" Arcane_Failure="40%" Speed_30="20 ft." Speed_20="15 ft." Weight="45 lbs." copper_cost="20000" halfpound_weight="90"/>
+  <item Name="Banded mail" Cost="250 gp" AC_Bonus="+7" Maximum="+1" Check_Penalty="&amp;ndash;6" Arcane_Failure="35%" Speed_30="20 ft." Speed_20="15 ft." Weight="35 lbs." copper_cost="25000" halfpound_weight="70"/>
+  <item Name="Half-plate" Cost="600 gp" AC_Bonus="+8" Maximum="+0" Check_Penalty="&amp;ndash;7" Arcane_Failure="40%" Speed_30="20 ft." Speed_20="15 ft." Weight="50 lbs." copper_cost="60000" halfpound_weight="100"/>
+  <item Name="Full plate" Cost="1,500 gp" AC_Bonus="+9" Maximum="+1" Check_Penalty="&amp;ndash;6" Arcane_Failure="35%" Speed_30="20 ft." Speed_20="15 ft." Weight="50 lbs." copper_cost="150000" halfpound_weight="100"/>
+  <item Name="Buckler" Cost="5 gp" AC_Bonus="+1" Maximum="&amp;mdash;" Check_Penalty="&amp;ndash;1" Arcane_Failure="5%" Speed_30="&amp;mdash;" Speed_20="&amp;mdash;" Weight="5 lbs." copper_cost="500" halfpound_weight="10"/>
+  <item Name="Shield, light wooden" Cost="3 gp" AC_Bonus="+1" Maximum="&amp;mdash;" Check_Penalty="&amp;ndash;1" Arcane_Failure="5%" Speed_30="&amp;mdash;" Speed_20="&amp;mdash;" Weight="5 lbs." copper_cost="300" halfpound_weight="10"/>
+  <item Name="Shield, light steel" Cost="9 gp" AC_Bonus="+1" Maximum="&amp;mdash;" Check_Penalty="&amp;ndash;1" Arcane_Failure="5%" Speed_30="&amp;mdash;" Speed_20="&amp;mdash;" Weight="6 lbs." copper_cost="900" halfpound_weight="12"/>
+  <item Name="Shield, heavy wooden" Cost="7 gp" AC_Bonus="+2" Maximum="&amp;mdash;" Check_Penalty="&amp;ndash;2" Arcane_Failure="15%" Speed_30="&amp;mdash;" Speed_20="&amp;mdash;" Weight="10 lbs." copper_cost="700" halfpound_weight="20"/>
+  <item Name="Shield, heavy steel" Cost="20 gp" AC_Bonus="+2" Maximum="&amp;mdash;" Check_Penalty="&amp;ndash;2" Arcane_Failure="15%" Speed_30="&amp;mdash;" Speed_20="&amp;mdash;" Weight="15 lbs." copper_cost="2000" halfpound_weight="30"/>
+  <item Name="Shield, tower" Cost="30 gp" AC_Bonus="+4" Maximum="+2" Check_Penalty="&amp;ndash;10" Arcane_Failure="50%" Speed_30="&amp;mdash;" Speed_20="&amp;mdash;" Weight="45 lbs." copper_cost="3000" halfpound_weight="90"/>
+  <item Name="Gauntlet, locked" Cost="8 gp" AC_Bonus="&amp;mdash;" Maximum="&amp;mdash;" Check_Penalty="special" Arcane_Failure="n/a" Speed_30="&amp;mdash;" Speed_20="&amp;mdash;" Weight="+5 lbs." copper_cost="800" halfpound_weight="0"/>
+</equipment>

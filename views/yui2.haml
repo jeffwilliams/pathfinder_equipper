@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+%html{ :lang => "en" }
+  %head
+    %title Pathfinder Equipper
+    %link{ :rel => "stylesheet", :type => "text/css", :href => "/style.css"}
+    
+    /
+      %link{ :type => "text/css", :rel => "stylesheet", :href => "http://yui.yahooapis.com/2.9.0/build/datatable/assets/skins/sam/datatable.css" }
+      %link{ :type => "text/css", :rel => "stylesheet", :href => "http://yui.yahooapis.com/2.9.0/build/menu/assets/skins/sam/menu.css" }
+      %link{ :rel => "stylesheet", :type => "text/css", :href => "http://yui.yahooapis.com/2.9.0/build/tabview/assets/skins/sam/tabview.css" }
+      %link{ :rel => "stylesheet", :type => "text/css", :href => "http://yui.yahooapis.com/2.9.0/build/fonts/fonts-min.css" }
+      %link{ :rel => "stylesheet", :type => "text/css", :href => "http://yui.yahooapis.com/2.9.0/build/button/assets/skins/sam/button.css" }
+      -# %link{ :rel => "stylesheet", :type => "text/css", :href => puburl("/style.css")}
+      -# %script{:src => "http://yui.yahooapis.com/3.9.0/build/yui/yui-min.js"}
+      -# YUI DataTable
+      %script{ :src => "http://yui.yahooapis.com/2.9.0/build/yahoo-dom-event/yahoo-dom-event.js"}
+      %script{ :src => "http://yui.yahooapis.com/2.9.0/build/element/element-min.js"}
+      %script{ :src => "http://yui.yahooapis.com/2.9.0/build/datasource/datasource-min.js"}
+      %script{ :src => "http://yui.yahooapis.com/2.9.0/build/datatable/datatable-min.js"}
+
+      -# YUI ConnectionManager
+      %script{ :src => "http://yui.yahooapis.com/2.9.0/build/connection/connection_core-min.js"}
+
+      -# YUI JSON
+      %script{ :src => "http://yui.yahooapis.com/2.9.0/build/yahoo/yahoo-min.js" }
+      %script{ :src => "http://yui.yahooapis.com/2.9.0/build/json/json-min.js" }
+
+      -# YUI Menu 
+      %script{ :src => "http://yui.yahooapis.com/2.9.0/build/container/container_core-min.js"}
+      %script{ :src => "http://yui.yahooapis.com/2.9.0/build/menu/menu-min.js" }
+
+      -# YUI TabView
+      %script{ :src => "http://yui.yahooapis.com/2.9.0/build/tabview/tabview-min.js"}
+
+      -# YUI Button
+      %script{ :src => "http://yui.yahooapis.com/2.9.0/build/button/button-min.js"}
+
+    -# Combo-handled YUI CSS files:
+    %link{ :rel => "stylesheet", :type => "text/css", :href => "http://yui.yahooapis.com/combo?2.9.0/build/fonts/fonts-min.css&2.9.0/build/assets/skins/sam/skin.css" }
+    -# Combo-handled YUI JS files: 
+    %script{ :type => "text/javascript", :src => "http://yui.yahooapis.com/combo?2.9.0/build/yahoo-dom-event/yahoo-dom-event.js&2.9.0/build/container/container_core-min.js&2.9.0/build/menu/menu-min.js&2.9.0/build/element/element-min.js&2.9.0/build/button/button-min.js&2.9.0/build/connection/connection_core-min.js&2.9.0/build/datasource/datasource-min.js&2.9.0/build/datatable/datatable-min.js&2.9.0/build/json/json-min.js&2.9.0/build/tabview/tabview-min.js"}
+
+    %script{:src => "/code-yui2.js" }
+  %body{:class => "yui-skin-sam"}
+    #maindiv
+      -#%div{ :style => "border: 1px solid #000000" }
+      %table
+        %tr
+          %td{ :id => "left_main_col" }
+            %p Selected Equipment
+            #selected_equipment
+            %table{ :style => "width: 100%;" }
+              %tr
+                %td Total Cost:
+                %td{ :style => "text-align: right;"}
+                  %span{ :id => "selected_cost" } 0
+              %tr
+                %td Total Weight:
+                %td{ :style => "text-align: right;"}
+                  %span{ :id => "selected_weight" } 0
+            %button{ :id => "remove" } Remove
+            %p
+              %button{ :id => "generate_pdf" } Generate PDF
+          %td{ :id => "middle_main_col" }
+          %td{ :id => "right_main_col" }
+            %p All Equipment
+            #available_tabview
+            %p
+              %button{ :id => "add" } Add
+              Qty:
+              %input{ :type => "number", :id => 'qty', :value => "1" }
+      -#%button{ :id => "load" } Load from Server
+      -#%button{ :id => "save" } Save to Server
