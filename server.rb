@@ -262,8 +262,8 @@ post "/make_pdf" do
   # Now create the PDF!
   Prawn::Document.generate "#{DynamicDataDir}/#{pdfName}" do |pdf|
     pdf.font_families.update("LiberationSerif" => {
-      :normal => "/usr/share/fonts/truetype/ttf-liberation/LiberationSerif-Regular.ttf",
-      :bold => "/usr/share/fonts/truetype/ttf-liberation/LiberationSerif-Bold.ttf"
+      :normal => "data/LiberationSerif-Regular.ttf",
+      :bold => "data/LiberationSerif-Bold.ttf"
     })
 
     pdf.font "LiberationSerif"
