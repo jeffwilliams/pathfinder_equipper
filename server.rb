@@ -1,4 +1,10 @@
 #!/usr/bin/env ruby
+
+# Allow inclusion from current directory
+if ! $:.include?(".")
+  $: << "."
+end
+
 require 'rubygems'
 require 'sinatra'
 require 'haml'
