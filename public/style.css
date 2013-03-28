@@ -56,12 +56,23 @@ body
   border: 1px solid #404080;
 }
 
-#left_main_col p
+h2
 {
   font-weight: bold;
+  font-size: 1em;
 }
 
-#right_main_col p
+h2
 {
   font-weight: bold;
+  font-size: 1em;
 }
+
+/* Make upload iframe invisible. */
+#uploadiframe, #downloadframe
+{ 
+  width: 0px; 
+  height: 0px;
+  border: 0px solid #000000;
+} 
+

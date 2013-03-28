@@ -47,7 +47,7 @@
       %table
         %tr
           %td{ :id => "left_main_col" }
-            %p Selected Equipment
+            %h2 Selected Equipment
             #selected_equipment
             %table{ :style => "width: 100%;" }
               %tr
@@ -60,10 +60,19 @@
                   %span{ :id => "selected_weight" } 0
             %button{ :id => "remove" } Remove
             %p
+              List name: 
+              %input{ :type => "text", :id => "selected_list_name"}
+            %p
               %button{ :id => "generate_pdf" } Generate PDF
+              %button{ :id => "save_xml" } Save as XML
+              %form{ :method => "post", :enctype => "multipart/form-data", :action => "/load_xml", :target => "uploadiframe", :id => "torrent_upload_form" }
+                %input{ :type => "file", :name => "eqfile", :value => "browse..." }
+                %input{ :type => "submit", :id => "load_xml", :value => "Load from XML" }
+
+
           %td{ :id => "middle_main_col" }
           %td{ :id => "right_main_col" }
-            %p All Equipment
+            %h2 All Equipment
             #available_tabview
             %p
               %button{ :id => "add" } Add
@@ -71,3 +80,9 @@
               %input{ :type => "number", :id => 'qty', :value => "1" }
       -#%button{ :id => "load" } Load from Server
       -#%button{ :id => "save" } Save to Server
+
+    -# This is the file-upload iframe
+    %iframe{ :id => "uploadiframe", :name => "uploadiframe", :onload => 'handleIframeLoad("uploadiframe")' }
+    -# file-download iframe
+    %iframe{ :id => "downloadframe", :name => "uploadiframe"}
+

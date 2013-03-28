@@ -1,3 +1,15 @@
+/**** IE Hacks ****/
+if ( typeof console === "undefined"  )
+{
+  FakeConsole = function(){
+    this.log = function log(s){ };
+  }
+
+  console = new FakeConsole();
+}
+
+/**** End IE Hacks ****/
+
 /**** Equipment Fields ****/
 var AvailableWeaponFields = [
   'Name',
@@ -148,10 +160,18 @@ function SaveDataCallback(){
 }
 
 function GeneratePdf_success(o){
+  var listname = getSelectedListName();
   // Redirect the browser to the returned specified URL; this is the download link for the PDF file.
-  newWindow = window.open(o.responseText,'PDF');
+  url = o.responseText + "&download_name=" + listname + ".pdf";
+  /*
+  newWindow = window.open(url,'PDF');
   if (window.focus) {
     newWindow.focus();
+  }
+  */
+  frame = document.getElementById("downloadframe");
+  if ( frame ){
+    frame.src = url;
   }
   return false;
 }
@@ -161,11 +181,65 @@ function GeneratePdfCallback(){
   this.failure = DataCallback_failure;
 }
 
+function GenerateXml_success(o){
+  var listname = getSelectedListName();
+  // Redirect the browser to the returned specified URL; this is the download link for the PDF file.
+  url = o.responseText + "&download_name=" + listname + ".xml";
+
+  /*
+  newWindow = window.open(url,'XML');
+  if (window.focus) {
+    newWindow.focus();
+  }
+  */
+  frame = document.getElementById("downloadframe");
+  if ( frame ){
+    frame.src = url;
+  }
+
+  return false;
+}
+
+function GenerateXmlCallback(){
+  this.success = GenerateXml_success;
+  this.failure = DataCallback_failure;
+}
+
 /**** END YUI AJAX Callback class ****/
 
 /**** Utility functions ****/
 function cloneArray(a){
   return a.slice(0);
+}
+
+function getSelectedListName()
+{
+  var nameElem = document.getElementById('selected_list_name');
+  var listname = null;
+  if ( nameElem ) {
+    listname = nameElem.value;
+  } 
+      
+  if( null == listname || listname.length == 0 )
+  {   
+    listname = "equipment";
+  }   
+
+  return listname;
+}
+
+function setSelectedListName(listname)
+{
+  var nameElem = document.getElementById('selected_list_name');
+      
+  if( null == listname || listname.length == 0 )
+  {   
+    listname = "equipment";
+  }   
+
+  if ( nameElem ) {
+    nameElem.value = listname;
+  } 
 }
 
 // Format a copper cost into gp, sp, etc as appropriate.
@@ -211,11 +285,7 @@ function getDataTableRows(dataTable){
   result = []
   records = dataTable.getRecordSet().getRecords();
   for( var i = 0; i < records.length; i++ ) {
-    row = {};
-    for( var j = 0; j < SelectedEquipmenFields.length; j++ ){
-      var field = SelectedEquipmenFields[j];
-      row[field] = records[i].getData(field);
-    }
+    row = records[i].getData();
     result.push(row);
   }
   return result;
@@ -239,7 +309,6 @@ function convertAvailableRecordToSelectedHash(record, qty, type)
   result['base_halfpound_weight'] = record.getData('halfpound_weight');
   result['modifiers']  = {};
   result['last_parent']  = record.getData('last_parent');
-console.log("Last parent: " + record.getData('last_parent'));
 
   return result;
 }
@@ -289,6 +358,13 @@ function updateSelectedEquipmentTotals()
   }
 }
 
+function getFrameByName(name) {
+  for (var i = 0; i < frames.length; i++)
+    if (frames[i].name == name)
+      return frames[i];
+        
+  return null;
+}     
 
 /**** End Utility Functions ****/
 
@@ -352,8 +428,8 @@ function getItemNameWithModifiers(data)
 /* Add a row to the selected equipment table. If a row with the same Name already exists,
    the Qty is increased by one. */
 function addRowToSelectedEquipment(row){
-  recordSet = UI.selectedEquipmentTable.getRecordSet();
-  records = recordSet.getRecords();
+  var recordSet = UI.selectedEquipmentTable.getRecordSet();
+  var records = recordSet.getRecords();
   for( var i = 0; i < records.length; i++ ) {
     if ( records[i].getData('Name') == row['Name'] ){
       row['Qty'] = Number(row['Qty']) + Number(records[i].getData('Qty'));
@@ -361,8 +437,13 @@ function addRowToSelectedEquipment(row){
       return;
     }
   }
-  UI.selectedEquipmentTable.addRow(selected);
+  UI.selectedEquipmentTable.addRow(row);
 
+}
+
+function clearSelectedEquipment(){
+  UI.selectedEquipmentTable.getRecordSet().reset();
+  UI.selectedEquipmentTable.render();
 }
 
 function addSelectedEquipment(e)
@@ -424,6 +505,34 @@ function correctNumberInInputField(type, args, obj){
   console.log(this.value);
 }
 
+function handleIframeLoad(frameName)
+{       
+  var frame = getFrameByName(frameName);
+  if ( frame != null )
+  {       
+    result = frame.document.getElementsByTagName("body")[0].innerHTML;
+          
+    // The form's onload handler gets called when the main page is first loaded as well.
+    // We detect this condition by checking if the iframes contents are not empty.
+    if ( result.length > 0 ){
+
+      json = YAHOO.lang.JSON.parse(result);
+      listname = json[0]['listname'];
+      console.log("List name: " + listname);
+      // Remove first (metadata) element
+      json.splice(0,1);
+
+      setSelectedListName(listname);
+     
+      clearSelectedEquipment();
+      for(var i = 0; i < json.length; i++){ 
+        addRowToSelectedEquipment(json[i]);
+      }
+      updateSelectedEquipmentTotals();
+    }
+  } 
+} 
+
 /**** End Event handlers ****/
 
 
@@ -433,12 +542,20 @@ YAHOO.util.Event.addListener(window, "load", function() {
   UI.addButton = new YAHOO.widget.Button("add");
   UI.removeButton = new YAHOO.widget.Button("remove");
   UI.generatePdfButton = new YAHOO.widget.Button("generate_pdf");
+  UI.saveXmlButton = new YAHOO.widget.Button("save_xml");
+  UI.loadXmlButton = new YAHOO.widget.Button("load_xml");
+
   // Attach a listener to the #add button
   UI.addButton.on('click', addSelectedEquipment);
   UI.removeButton.on('click', removeSelectedEquipment);
   UI.generatePdfButton.on('click', function(e) {
     /* Save data using AJAX */
     var transaction = YAHOO.util.Connect.asyncRequest('POST', "/make_pdf", new GeneratePdfCallback(),
+      "data=" + YAHOO.lang.JSON.stringify(getDataTableRows(UI.selectedEquipmentTable)));
+  });
+  UI.saveXmlButton.on('click', function(e) {
+    /* Save data using AJAX */
+    var transaction = YAHOO.util.Connect.asyncRequest('POST', "/make_xml", new GenerateXmlCallback(),
       "data=" + YAHOO.lang.JSON.stringify(getDataTableRows(UI.selectedEquipmentTable)));
   });
   UI.selectedTotalCostLabel = new Label("selected_cost");
@@ -476,22 +593,6 @@ YAHOO.util.Event.addListener(window, "load", function() {
   var transaction = YAHOO.util.Connect.asyncRequest('GET', "/equipment?type=weapons", new LoadDataCallback(UI.availWeaponTable), null);
   var transaction = YAHOO.util.Connect.asyncRequest('GET', "/equipment?type=armor", new LoadDataCallback(UI.availArmorTable), null);
   var transaction = YAHOO.util.Connect.asyncRequest('GET', "/equipment?type=goods", new LoadDataCallback(UI.availGoodsTable), null);
-
-  /*
-  YAHOO.util.Event.addListener("load", "click", function(e) {
-    // Clear the table
-    UI.availWeaponTable.getRecordSet().reset();
-    UI.availWeaponTable.render();
-    // Load data using AJAX
-    var transaction = YAHOO.util.Connect.asyncRequest('GET', "/equipment?type=weapons", new LoadDataCallback(UI.availWeaponTable), null);
-  });
-
-  YAHOO.util.Event.addListener("save", "click", function(e) {
-    // Save data using AJAX 
-    var transaction = YAHOO.util.Connect.asyncRequest('POST', "/equipment", new SaveDataCallback(), 
-      "data=" + YAHOO.lang.JSON.stringify(getDataTableRows(table)));
-  });
-  */
 
   YAHOO.util.Event.addListener("qty", "change", correctNumberInInputField);
  

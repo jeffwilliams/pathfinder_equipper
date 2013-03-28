@@ -6,102 +6,36 @@ require 'json'
 require 'nokogiri'
 require 'prawn'
 require 'htmlentities'
-
-#settings.port = 5555
+require 'equipment_manager'
+require 'filename_generator'
 
 DynamicDataDir = "dynamic_data"
-
-class EquipmentManager
-  WeaponsFile = "data/weapons.xml"
-  ArmorFile = "data/armor.xml"
-  GoodsFile = "data/goods-and-services.xml"
-
-  def initialize
-    @weaponList = read(WeaponsFile)
-    @armorList = read(ArmorFile)
-    @goodList = read(GoodsFile)
-
-    @weaponHash = listToHash(@weaponList)
-    @armorHash = listToHash(@armorList)
-    @goodHash = listToHash(@goodList)
-  end
-
-  attr_reader :weaponList, :armorList, :goodList
-  attr_reader :weaponHash, :armorHash, :goodHash
-
-  private 
-  # Load the equipment from the specified XML file into a list of property hashes.
-  def read(file)
-    doc = nil
-    File.open(file,"r") do |file|
-      doc = Nokogiri::XML.parse(file)
-    end
-
-    equipment = []
-    doc.css("item").each do |item|
-      hash = {}
-      item.attributes.each do |k,v|
-        hash[k] = v.to_s
-      end
-      equipment.push hash
-    end
-    equipment
-  end
-
-  # Create a hash from the given equipment list, where the key is the name
-  # and the value is the equipment hash
-  def listToHash(list)
-    hash = {}
-    list.each do |e|
-      hash[e['Name']] = e
-    end
-    hash
-  end
-  
-end
-
-class FilenameGenerator
-  def initialize
-    @mutex = Mutex.new
-  end
-  def generateNewPdfFilename
-    tries = 3
-    while tries > 0
-      
-      filename = "#{Thread.current.object_id}-#{rand(10000)}.pdf"
-      path = DynamicDataDir + "/" + filename
-      @mutex.synchronize do
-        if ! File.exists?(path)
-          # Reserve
-          File.open(path, "w"){ |file| file.puts("reserved")}
-          return filename
-        end
-      end
-      tries -= 1
-    end
-    nil
-  end
-end
+EnableOldFileCleanup = true
 
 # Start a thread to clean up old files.
-Thread.new do
-  puts "Old file cleanup thread starting. Will clean up files from #{DynamicDataDir}"
-  dir = Dir.new(DynamicDataDir)
-  while true
-    begin
-      dir.each do |e|
-        path = DynamicDataDir + "/" + e
-        # Cleanup files older than 1 minute. If the javascript redirect to donwload the pdf
-        # hasn't happened yet something went wrong.
-        if File.file?(path) && File.mtime(path) < (Time.new - 60)
-          File.delete path
+if EnableOldFileCleanup
+  Thread.new do
+
+    puts "Old file cleanup thread starting. Will clean up files from #{DynamicDataDir}"
+    dir = Dir.new(DynamicDataDir)
+    while true
+      begin
+        dir.each do |e|
+          path = DynamicDataDir + "/" + e
+          # Cleanup files older than 1 minute. If the javascript redirect to donwload the pdf
+          # hasn't happened yet something went wrong.
+          if File.file?(path) && File.mtime(path) < (Time.new - 60)
+            File.delete path
+          end
         end
+        sleep 600
+      rescue
+        puts "Exception in old file cleanup thread: #{e}"
       end
-      sleep 600
-    rescue
-      puts "Exception in old file cleanup thread: #{e}"
     end
   end
+else
+  puts "WARNING: Not starting old file cleanup thread. This is for debugging only."
 end
 
 $equipmentManager = EquipmentManager.new
@@ -142,12 +76,8 @@ end
 
 # PDF Generation and download are separate URLs.
 post "/make_pdf" do
-  request.body.rewind  # in case someone already read it
-  # Ignore 'data='
-  equipment = request.body.read
-  equipment = equipment[5,equipment.length] if equipment =~ /^data=/
-  equipment.chomp!
-  equipment = JSON.parse equipment
+
+  equipment = EquipmentManager.parseEquipmentListFromRequest(request)
     
   # Sort
   equipment.sort! do |a,b|
@@ -210,7 +140,7 @@ post "/make_pdf" do
     weaponCells.push cells
   end
 
-  puts "/get_pdf: making armor cells"
+  puts "/make_pdf: making armor cells"
   
   armorCells = []
   armorCells.push ["Name ","Cost ","AC ", "Max. Dex", "Check Penalty ", "Arcane Failure", "30 ft.", "20 ft. ", "Weight ", "Qty " ]
@@ -250,14 +180,14 @@ post "/make_pdf" do
     goodsCells.push cells
   end
 
-  pdfName = $filenameGenerator.generateNewPdfFilename
+  pdfName = $filenameGenerator.generateNewFilename("eq","pdf")
   if !pdfName
     status 500
     puts "/make_pdf: Generating new unique PDF filename failed"
     break
   end
 
-  puts "/get_pdf: making PDF #{pdfName}"
+  puts "/make_pdf: making PDF #{pdfName}"
 
   # Now create the PDF!
   Prawn::Document.generate "#{DynamicDataDir}/#{pdfName}" do |pdf|
@@ -308,29 +238,117 @@ post "/make_pdf" do
     end
   end
 
-#debug
-system("cp '#{DynamicDataDir}/#{pdfName}' /tmp")
-
-  "/get_pdf?file=#{pdfName}"
+  "/get_file?file=#{pdfName}"
 end
 
-get "/get_pdf" do
+# XML Generation and download are separate URLs.
+post "/make_xml" do
+
+  equipment = EquipmentManager.parseEquipmentListFromRequest(request)
+
+  builder = Nokogiri::XML::Builder.new do |xml|
+    xml.equipment do
+      equipment.each do |e|
+        xml.item e
+      end
+    end
+  end
+
+  puts "/make_xml: Generated XML: #{builder.to_xml}"
+
+  xmlName = $filenameGenerator.generateNewFilename("eq","xml")
+  if !xmlName
+    status 500
+    puts "/make_xml: Generating new unique XML filename failed"
+    break
+  end
+
+  begin
+    File.open("#{DynamicDataDir}/#{xmlName}", "w") do |file|
+      file.puts builder.to_xml 
+    end
+  rescue
+    status 500
+    puts "/make_xml: Writing XML to file #{xmlName} failed"
+    break
+  end
+
+  "/get_file?file=#{xmlName}"
+end
+
+get "/get_file" do
   fileName = params[:file]
+  downloadFileName = params[:download_name]
+
+  if ! downloadFileName || downloadFileName.length == 0 
+    ext = File.extname(fileName)
+    ext = "dat" if !ext || ext.length == 0
+    downloadFileName = "equipment.#{ext}"
+  end
+
   # Security:
   fileName.gsub!(/\//,'')
+  downloadFileName.gsub!(/[^A-Za-z0-9.\- _]/,'')
 
   path = "#{DynamicDataDir}/#{fileName}"
-  puts "/get_pdf: reading file #{path}"
+  puts "/get_file: reading file #{path}"
+
+  mimeType = "application/octet-stream"
+  if fileName =~ /\.pdf$/
+    mimeType = "application/pdf"
+  elsif fileName =~ /\.xml$/
+    mimeType = "application/xml"
+  end
+
   data = nil
-  File.open("#{DynamicDataDir}/#{fileName}","r") do |file|
+  path = "#{DynamicDataDir}/#{fileName}"
+  File.open(path,"r") do |file|
     data = file.read
     # To have the PDF act as a download, use the Content-Disposition header. TO have it display in a new window/tab
     # Do not send that header.
-    headers "Content-Type" => "application/pdf",
-      "Content-Disposition" => "attachment; filename=\"Pathfinder-Equipment.pdf\""
+    headers "Content-Type" => mimeType,
+      "Content-Disposition" => "attachment; filename=\"#{downloadFileName}\""
   end
   # Delete file
   File.delete(path)
     
   data
 end
+
+# Handle an upload of a selected XML equipment file.
+post "/load_xml" do
+  # See http://www.wooptoot.com/file-upload-with-sinatra
+  if ! params['eqfile']
+    status 500
+    puts "/load_xml: No file was passed"
+    break
+  end
+
+  name = params['eqfile'][:filename]
+  path = params['eqfile'][:tempfile].path
+  #FileUtils.chmod 0644, path
+
+  doc = nil
+  File.open(path,"r") do |file|
+    doc = Nokogiri::XML.parse(file)
+  end
+
+  equipment = []
+
+  # Put a special metadata hash at the beginning
+  hash = {'Name' => 'metadata', 'listname' => File.basename(name,".xml")}
+  equipment.push hash
+
+  doc.css("item").each do |item|
+    hash = {}
+    item.attributes.each do |k,v|
+      hash[k] = v.to_s
+    end
+    equipment.push hash
+  end
+
+  result = JSON.generate(equipment)
+  result
+end
+
+
