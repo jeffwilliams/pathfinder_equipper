@@ -12,6 +12,7 @@ require 'nokogiri'
 require 'cgi'
 require 'fiber'
 require 'tempfile'
+require 'yaml'
 
 class Extractor
   def initialize(doc)
@@ -23,6 +24,8 @@ class Extractor
     @header = cols
   end
 
+  # Parameter headerRow: Which row in the table (indexed from 1) contains the 
+  # header. 
   def parseHtmlTable(css, headerRow = 1, combineIndentedRows = false)
     node = @doc.css(css).first
     raise "No node found using css selector #{css}" if ! node
@@ -71,6 +74,19 @@ class Extractor
         yield hash if i == header.length
       end
     end
+  end
+end
+
+def nvl(value, ifnull)
+  value ? value : ifnull
+end
+
+# Given a scalar or a list, convert it to list.
+def toList(value)
+  if value.is_a?(Array)
+    value
+  else
+    [value]
   end
 end
 
@@ -130,7 +146,6 @@ class Filter
     @gsubs.each do |l|
       pattern, replacement = l
       hash.each do |k,v|
-puts "Applying gsub to #{k}=#{v}"
         if v.is_a?(String)
           v.gsub! pattern, replacement
         end
@@ -196,7 +211,9 @@ class BaseFilter < Filter
 
   def process(hash)
     result = super
+    raise "Equipment has no Cost: '#{hash['Name']}' #{hash}" if ! hash.has_key?('Cost')
     hash['copper_cost'] = convertCostToCopper(hash['Cost'])
+    raise "Equipment has no Weight: #{hash['Name']}" if ! hash.has_key?('Weight')
     hash['halfpound_weight'] = convertWeightToHalfpound(hash['Weight'])
     result
   end
@@ -240,6 +257,14 @@ class ItemRowFilter < BaseFilter
   def initialize
     super
     addKeyChange "Item", "Name"
+    addKeyChange "Adventuring Gear", "Name"
+    addKeyChange "Special Substances and Items", "Name"
+    addKeyChange "Tools and Skill Kits", "Name"
+    addKeyChange "Clothing","Name"
+    addKeyChange "Animal-Related Gear", "Name"
+    addKeyChange "Entertainment Items", "Name"
+
+    addKeyChange "Craft DC", "Craft_DC"
   end
 
   def process(hash)
@@ -286,6 +311,7 @@ class PrdProcessor
     extractor = Extractor.new(@doc)
     extractor.defineHeader(header) if header
     extractor.parseHtmlTable(tableId, headerRow, combineIndentedRows) do |row|
+puts "Read row: #{row}"
       if filter.process(row) == :process
         output.process(row)
       end
@@ -299,49 +325,48 @@ class PrdProcessor
 
 end
 
+conf = ARGV[0]
+if ! conf
+  raise "You must specify a yaml config file"
+end
+
+File.open(conf,"r"){ |io| conf = YAML::load(io) }
+puts "Loading file #{conf['file']}"
+
 doc = nil
-File.open('equipment.html','r') do |file|
-  # Preprocess file. We need to escape the HTML entities so that they aren't translated by Nokogiri.
+File.open(conf['file'],'r') do |file|
+  # Preprocess file: 
+  # 1. We need to escape the HTML entities so that they aren't translated by Nokogiri.
+  # 2. Nokogiri doesn't like colon characters in HTML element ids. Strip these out.
   xmlString = ""
   file.each_line do |line|
-    xmlString << line.gsub(/&/, '&amp;')
+    line.gsub!(/&/, '&amp;')
+    if line =~ /(.*id=")([^"]*)(".*)/
+      a = $1
+      c = $3
+      b = $2.gsub(/:/,'')
+      line = a + b + c
+    end
+
+    xmlString << line
   end
 
   doc = Nokogiri::HTML.parse(xmlString)
 end
 
 prdProcessor = PrdProcessor.new(doc)
-prdProcessor.processTable("#table-6-4-weapons", "weapons.xml", WeaponRowFilter.new)
+
+prdProcessor.processTable(conf['weapon_table'], conf['weapon_file'], WeaponRowFilter.new, nvl(conf['weapon_table_header_row'],1))
 armorHeader = ['Name','Cost', 'AC_Bonus', 'Maximum', 'Check_Penalty', 'Arcane_Failure', 'Speed_30', 'Speed_20', 'Weight']
-prdProcessor.processTable("#table-6-6-armor-and-shields", "armor.xml", ArmorRowFilter.new, 1, false, armorHeader)
-prdProcessor.processTable("#table-6-9-goods-and-services", "goods-and-services.xml", ItemRowFilter.new, 2, true)
+prdProcessor.processTable(conf['armor_table'], conf['armor_file'], ArmorRowFilter.new, nvl(conf['armor_table_header_row'],1), false, armorHeader)
 
-=begin
-#outfile = File.open("test.xml","w")
-output = Builder.new
-output.process('name' => 'sword', 'cost' => '1 gp')
-xml = output.finish
-puts "OUTPUT: "
-puts xml
+puts conf['goods_table']
 
-ex = Extractor.new(doc)
-filt = WeaponRowFilter.new
-ex.parseHtmlTable("#table-6-4-weapons") do |row|
-  filt.process(row)
-  puts row.inspect
+index = 0
+toList(conf['goods_table']).each do |table|
+  outfile = String.new(conf['goods_file'])
+  outfile.sub!(/\.xml/,"-#{index}.xml") if index > 0
+  prdProcessor.processTable(table, outfile, ItemRowFilter.new, nvl(conf['goods_table_header_row'],1), true)
+  index += 1
 end
 
-filt = ArmorRowFilter.new
-ex.parseHtmlTable("#table-6-6-armor-and-shields") do |row|
-  filt.process(row)
-  puts row.inspect
-end
-
-puts
-puts
-filt = ItemRowFilter.new
-ex.parseHtmlTable("#table-6-9-goods-and-services", 2, true) do |row|
-  filt.process(row)
-  puts row.inspect
-end
-=end

@@ -1,0 +1,14 @@
+# Configuration file for parse-prd-html.rb
+file: advancedGear.html
+weapon_table: "#table-4-1-weapons"
+weapon_file: "apg-weapons.xml"
+armor_table: "#table-4-2-armor-and-shields"
+armor_file: "apg-armor.xml"
+goods_table: 
+  - "#table-4-3-goods-and-services"
+  - "#jeff-special-sub"
+  - "#jeff-tools"
+  - "#jeff-clothing"
+  - "#jeff-animal"
+  - "#jeff-entertain"
+goods_file: "apg-goods-and-services.xml"
