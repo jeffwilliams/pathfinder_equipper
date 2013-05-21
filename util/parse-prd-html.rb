@@ -246,6 +246,7 @@ class ArmorRowFilter < BaseFilter
     super
     addIgnore "Name", "Armor spikes"
     addIgnore "Name", "Shield spikes"
+    addGsub(/&ndash;/,'-')
   end
 
   def process(hash)
@@ -311,7 +312,6 @@ class PrdProcessor
     extractor = Extractor.new(@doc)
     extractor.defineHeader(header) if header
     extractor.parseHtmlTable(tableId, headerRow, combineIndentedRows) do |row|
-puts "Read row: #{row}"
       if filter.process(row) == :process
         output.process(row)
       end

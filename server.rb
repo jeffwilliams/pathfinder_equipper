@@ -82,7 +82,6 @@ end
 
 # PDF Generation and download are separate URLs.
 post "/make_pdf" do
-
   equipment = EquipmentManager.parseEquipmentListFromRequest(request)
     
   # Sort
@@ -111,13 +110,13 @@ post "/make_pdf" do
 
   # Resolve. Figure out the original equipment attributes
   weapons.each do |e|
-    e[:original_equipment] = $equipmentManager.weaponHash[e['Name']]
+    e[:original_equipment] = $equipmentManager.weaponHash[e['base_name']]
   end
   armor.each do |e|
-    e[:original_equipment] = $equipmentManager.armorHash[e['Name']]
+    e[:original_equipment] = $equipmentManager.armorHash[e['base_name']]
   end
   goods.each do |e|
-    e[:original_equipment] = $equipmentManager.goodHash[e['Name']]
+    e[:original_equipment] = $equipmentManager.goodHash[e['base_name']]
   end
   
   # Generate table cell data
@@ -151,14 +150,15 @@ post "/make_pdf" do
   armorCells = []
   armorCells.push ["Name ","Cost ","AC ", "Max. Dex", "Check Penalty ", "Arcane Failure", "30 ft.", "20 ft. ", "Weight ", "Qty " ]
   armor.each do |e|
+    puts "/make_pdf: row: " + e.inspect
     orig = e[:original_equipment]
     cells = [
       e['Name'],
       e['Cost'],
       orig['AC_Bonus'],
-      orig['Maximum'],
-      orig['Check_Penalty'],
-      orig['Arcane_Failure'],
+      e['Maximum'],
+      e['Check_Penalty'],
+      e['Arcane_Failure'],
       orig['Speed_30'],
       orig['Speed_20'],
       e['Weight'],

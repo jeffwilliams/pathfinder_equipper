@@ -1,3 +1,5 @@
+require 'cgi'
+
 class EquipmentManager
   WeaponsFile = "data/weapons.xml"
   ArmorFile = "data/armor.xml"
@@ -54,7 +56,8 @@ class EquipmentManager
     equipment = request.body.read
     equipment = equipment[5,equipment.length] if equipment =~ /^data=/
     equipment.chomp!
-    JSON.parse equipment
+    
+    JSON.parse CGI.unescape(equipment)
   end
  
 end
