@@ -1,5 +1,5 @@
 # Configuration file for parse-prd-html.rb
-file: equipment.html
+file: "source_html/equipment.html"
 weapon_table: "#table-6-4-weapons"
 weapon_file: "core-weapons.xml"
 armor_table: "#table-6-6-armor-and-shields"

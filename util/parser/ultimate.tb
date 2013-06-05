@@ -1,0 +1,94 @@
+on_child "thead" do |e|
+  # thead elements in ultimate weapons tables contain either:
+  # 1. The column headers (where the name is a category as well)
+  # 2. A weapon category i.e. "Light Melee Weapons".
+  # They differ in the number of elements in the row.
+
+  vars.delete :subheading
+  row = e.css("tr")
+  if row.children.size == 1
+    vars[:category] = first_text_under(row)
+  else
+    # Call the Proc that was registered for parsing the header.
+    head = vars[:parse_header].call row
+  
+    # First element of the header is always the name
+    vars[:category] = head[0]
+    head[0] = 'Name'
+    set_header head
+  end
+
+end
+
+on_child "tr" do |e|
+  hash = apply_header(text_under(e))
+
+  if hash.size < header.size
+    # This row had less columns than expected. It may be an inline header
+    puts "PROG: too few columns: #{hash}"
+    continue = true
+    continue = vars[:handle_too_few_cols].call(hash) if vars[:handle_too_few_cols]
+    next if ! continue
+  end
+
+  hash['Name'] = vars[:subheading] + ", " + hash['Name'] if vars[:subheading]
+
+  hash['category'] = vars[:category]
+  hash['set'] = vars[:set]
+
+  hash.each do |k,v|  
+    v = CGI.unescapeHTML(v)
+    hash[k] = v
+  end
+
+  # Poisons have no weight
+  hash['Weight'] = '&amp;mdash;' if ! hash['Weight']
+  output_item hash
+end
+
+on_child "caption" do |e|
+  vars[:set] = first_text_under(e)
+  puts "SET: #{vars[:set]}"
+end
+
+# Define a the proc that when called with the tr elements under
+# a thead, will produce an array with the column header names.
+puts "PROG: " + vars[:item_type]
+if vars[:item_type] == "weapons"
+  vars[:parse_header] = Proc.new do |rows|
+    # In the weapons tables, each XML text node is a heading
+    text_under(rows)
+  end
+elsif vars[:item_type] == "armor"
+  vars[:parse_header] = Proc.new do |rows|
+    # In the armor table, some th elements have a br in the middle so we need
+    # to join the text nodes separated by the br.
+    # Also, the Speed th node contains two sub-headings that need to be treated separately.
+    # Finally, remove all superscript tags that screw up naming.
+    rows.css("sup").each{ |e| e.remove }
+    rows.css("th").collect do |th| 
+      if th["colspan"] == "2"
+        # Speed header.
+        ["Speed_20","Speed_30"]
+      else
+        text_under(th).join " "
+      end
+    end.flatten
+  end
+elsif vars[:item_type] == "goods"
+  vars[:parse_header] = Proc.new do |rows|
+    # In the goods tables, each XML text node is a heading
+    text_under(rows)
+  end
+
+  vars[:handle_too_few_cols] = Proc.new do |hash|
+    # This is a subheading of items. The subheading name should be prepended to 
+    # the item names in this heading.
+    vars[:subheading] = hash['Name']
+  
+    # Return false so that this row is not output
+    false
+  end
+
+end
+

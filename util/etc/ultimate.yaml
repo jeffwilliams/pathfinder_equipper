@@ -1,0 +1,51 @@
+# Configuration file for parse-prd-html.rb
+infile: 
+  - source_html/ultimate_weapons.html
+  - source_html/ultimate_armor.html
+  - source_html/ultimate_adventuringGear.html
+  - source_html/ultimate_alchemicalRemedies.html
+  - source_html/ultimate_alchemicalTools.html
+  - source_html/ultimate_alchemicalWeapons.html
+  - source_html/ultimate_animalsAndTransports.html
+  - source_html/ultimate_clothing.html
+  - source_html/ultimate_entertainmentAndTradeGoods.html
+  - source_html/ultimate_foodAndDrink.html
+#source_html/ultimate_lodgingAndServices.html
+  - source_html/ultimate_poisons.html
+  - source_html/ultimate_toolsAndSkillKits.html
+
+weapons:
+  program: parser/ultimate.tb
+  table: 
+    - "#simple-weapons-table"
+    - "#martial-weapons-table"
+    - "#exotic-weapons-table"
+    - "#ammunition-table"
+  outfile: "output/ultimate-weapons.xml"
+armor:
+  program: parser/ultimate.tb
+  table: 
+    - "#armor-and-shields-table"
+  outfile: "output/ultimate-armor.xml"
+goods:
+  program: parser/ultimate.tb
+  table:
+    - "#adventuring-gear"
+    - "#alchemical-remedies-table"
+    - "#alchemical-tools-table"
+    - "#alchemical-weapons-table"
+    - "#pets-and-familiars-table"
+    - "#gaurd-and-hunting-animals-table"
+    - "#farm-and-work-animals-table"
+    - "#mounts-table"
+    - "#animal-related-gear-table"
+    # We are building an inventory. No sense in purchasing transport.
+    #- "#transport-table"
+    - "#clothing-table"
+    - "#entertainment-table"
+    # The trade goods table is formatted differently.
+    #- "#trade-goods-table"
+    - "#food-and-drink-table"
+    - "#poisons-table"
+    - "#tools-and-skill-kits-table"
+  outfile: "output/ultimate-goods-and-services.xml"

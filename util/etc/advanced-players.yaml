@@ -1,5 +1,5 @@
 # Configuration file for parse-prd-html.rb
-file: advancedGear.html
+file: source_html/advancedGear.html
 weapon_table: "#table-4-1-weapons"
 weapon_file: "apg-weapons.xml"
 armor_table: "#table-4-2-armor-and-shields"
