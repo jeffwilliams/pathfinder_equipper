@@ -6,6 +6,7 @@ require 'table_parser'
 require 'filter'
 require 'yaml'
 require 'fileutils'
+require 'materials'
 
 class Builder
   def initialize
@@ -39,7 +40,7 @@ class PrdProcessor
     @docs = docs
   end
 
-  def process_table(tableId, builder, prog_path, type, filter = NullFilter.new)
+  def process_table(tableId, builder, prog_path, type, filters = [NullFilter.new])
     # Find which document contains the needed table.
     matched = @docs.select{ |tdoc| !tdoc.css(tableId).first.nil? }
     raise "No node found using css selector #{css}" if matched.empty?
@@ -57,9 +58,8 @@ class PrdProcessor
     eval prog, context.get_binding, prog_path
 
     parser.go do |row|
-#puts "PRE-FILTER: #{row}"
-      if filter.process(row) == :process
-#puts "POST-FILTER: #{row}"
+puts "ROW: #{row}" if row['Name'] == 'Tower'
+      if filters.reduce(true){ |memo, filter| memo && filter.process(row) == :process }
         builder.process(row)
       end
     end
@@ -99,13 +99,13 @@ def open_using_nokogiri(filename)
   doc
 end
 
-def filterFor(type)
+def filtersFor(type)
   if type == "weapons"
-    WeaponRowFilter.new
+    [WeaponRowFilter.new, MaterialsFilter.new]
   elsif type == "armor"
-    ArmorRowFilter.new
+    [ArmorRowFilter.new, MaterialsFilter.new]
   else
-    ItemRowFilter.new
+    [ItemRowFilter.new]
   end
 end
 
@@ -114,7 +114,7 @@ def processItemType(processor, conf, type)
     index = 0
     builder = Builder.new
     toList(conf[type]['table']).each do |table|
-      processor.process_table(table, builder, conf[type]['program'], type, filterFor(type))
+      processor.process_table(table, builder, conf[type]['program'], type, filtersFor(type))
       index += 1
     end
 

@@ -76,3 +76,27 @@ h2
   border: 0px solid #000000;
 } 
 
+#light_weapons, #medium_weapons
+{
+  min-height: 500px; 
+  min-width: 500px; 
+}
+
+/** 
+  YUI2 TabView: The following CSS is used to change the width of horizontal tabs 
+  to be larger so that they fit the tab labels, i.e. "Simple, Light Weapons" 
+  See http://developer.yahoo.com/yui/examples/tabview/skinning.html
+*/
+/* default width for side tabs */ 
+.yui-navset .yui-navset-left .yui-nav, 
+.yui-navset .yui-navset-right .yui-nav, 
+.yui-navset-left .yui-nav, 
+.yui-navset-right .yui-nav { width:14em; } 
+
+.yui-navset .yui-navset-left, 
+.yui-navset-left { padding:0 0 0 14em; } /* map to nav width */ 
+.yui-navset-right { padding:0 14em 0 0; } /* ditto */ 
+
+/** 
+  YUI2 TabView: end changes.
+*/

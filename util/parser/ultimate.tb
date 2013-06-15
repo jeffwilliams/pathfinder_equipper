@@ -21,7 +21,15 @@ on_child "thead" do |e|
 end
 
 on_child "tr" do |e|
+  # Remove all superscript elements, since they mess up our parsing (they count as a separate text node)
+  e.css("sup").each{ |e| e.remove }
+
   hash = apply_header(text_under(e))
+
+if hash['Name'] == 'Tower'
+  puts "PROG: hash = #{hash}" if hash['Name'] == 'Tower'
+  puts "PROG: text_under: #{text_under(e)}"
+end
 
   if hash.size < header.size
     # This row had less columns than expected. It may be an inline header
@@ -42,7 +50,7 @@ on_child "tr" do |e|
   end
 
   # Poisons have no weight
-  hash['Weight'] = '&amp;mdash;' if ! hash['Weight']
+  hash['Weight'] = '&mdash;' if ! hash['Weight']
   output_item hash
 end
 
@@ -53,7 +61,6 @@ end
 
 # Define a the proc that when called with the tr elements under
 # a thead, will produce an array with the column header names.
-puts "PROG: " + vars[:item_type]
 if vars[:item_type] == "weapons"
   vars[:parse_header] = Proc.new do |rows|
     # In the weapons tables, each XML text node is a heading

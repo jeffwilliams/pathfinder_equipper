@@ -48,7 +48,8 @@ $equipmentManager = EquipmentManager.new
 $filenameGenerator = FilenameGenerator.new
 
 get "/" do
-  haml :yui2
+  devmode = !(params[:devmode].nil?)
+  haml :yui2, :locals => {:devmode => devmode}
 end
 
 get "/yui2" do
@@ -58,24 +59,35 @@ end
 get "/equipment" do
   type = params[:type].to_s
   puts "get equipment[#{type}] called (v2)"
-
-  list = nil
-  if type == "weapons"
-    list = $equipmentManager.weaponList
-  elsif type == "armor"
-    list = $equipmentManager.armorList
-  elsif type == "goods"
-    list = $equipmentManager.goodList
-  else
+  if ! type
     status 500
-    puts "Unknown equipment type #{type}"
-    break
+    puts "/equipment called with no type"
+    body "/equipment requires a type parameter."
+    $stdout.flush
+    break 
   end
 
-   result = { "result" => list }
+  # Convert params to a filter
+  filter = {}
+  params.each do |k,v|
+    filter[k.to_s] = v
+  end
+
+  begin
+    #list = $equipmentManager.filteredList( {'type' => type})
+    list = $equipmentManager.filteredList filter
+  rescue
+    # Error already logged
+    status 500
+    # return  exception 
+    #body $!.to_s
+    puts $!.to_s
+    $stdout.flush
+    break
+  end
+  result = { "result" => list }
 
   # Generate the JSON data
-  #result = { "result" => [ {'name' => 'sword', 'cost' => '1gp'} ] }
   result = JSON.generate(result)
   result
 end

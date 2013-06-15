@@ -2,8 +2,6 @@
 %html{ :lang => "en" }
   %head
     %title Pathfinder Equipper
-    %link{ :rel => "stylesheet", :type => "text/css", :href => "/style.css"}
-    
     /
       %link{ :type => "text/css", :rel => "stylesheet", :href => "http://yui.yahooapis.com/2.9.0/build/datatable/assets/skins/sam/datatable.css" }
       %link{ :type => "text/css", :rel => "stylesheet", :href => "http://yui.yahooapis.com/2.9.0/build/menu/assets/skins/sam/menu.css" }
@@ -41,6 +39,7 @@
     %script{ :type => "text/javascript", :src => "http://yui.yahooapis.com/combo?2.9.0/build/yahoo-dom-event/yahoo-dom-event.js&2.9.0/build/container/container_core-min.js&2.9.0/build/menu/menu-min.js&2.9.0/build/element/element-min.js&2.9.0/build/button/button-min.js&2.9.0/build/connection/connection_core-min.js&2.9.0/build/datasource/datasource-min.js&2.9.0/build/datatable/datatable-min.js&2.9.0/build/json/json-min.js&2.9.0/build/tabview/tabview-min.js"}
 
     %script{:src => "/code-yui2.js" }
+    %link{ :rel => "stylesheet", :type => "text/css", :href => "/style.css"}
   %body{:class => "yui-skin-sam"}
     #maindiv
       -#%div{ :style => "border: 1px solid #000000" }
@@ -59,6 +58,8 @@
                 %td{ :style => "text-align: right;"}
                   %span{ :id => "selected_weight" } 0
             %button{ :id => "remove" } Remove
+            - if locals[:devmode]
+              %button{ :id => "devmode_log_selected_info" } Log Info
             %p
               List name: 
               %input{ :type => "text", :id => "selected_list_name"}

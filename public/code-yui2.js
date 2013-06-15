@@ -35,12 +35,15 @@ var AvailableWeaponFields = [
   'Special',
   'copper_cost',
   'halfpound_weight',
-  'last_parent'
+  'set',
+  'category',
+  'business_end_material',
+  'holding_end_material'
 ];
 
 // Fields for display
 var AvailableWeaponColumns = [
-  { key: 'Name', label: 'Name', sortable: true },
+  { key: 'Name', label: 'Name', sortable: true, width: 150 },
   { key: 'Cost', label: 'Cost' },
   { key: 'Dmg_S', label: 'Dmg (S)' },
   { key: 'Dmg_M', label: 'Dmg (M)' },
@@ -48,7 +51,13 @@ var AvailableWeaponColumns = [
   { key: 'Range', label: 'Range' },
   { key: 'Weight', label: 'Weight' },
   { key: 'Type', label: 'Type' },
-  { key: 'Special', label: 'Special' }
+  { key: 'Special', label: 'Special', width: 150 }
+];
+
+var AvailableAmmunitionColumns = [
+  { key: 'Name', label: 'Name', sortable: true},
+  { key: 'Cost', label: 'Cost' },
+  { key: 'Weight', label: 'Weight' }
 ];
 
 var AvailableArmorFields = [
@@ -63,12 +72,15 @@ var AvailableArmorFields = [
   'Weight',
   'copper_cost',
   'halfpound_weight',
-  'last_parent'
+  'set',
+  'category',
+  'business_end_material',                                                                                                                                                                                                                                                                                                     
+  'holding_end_material'
 ];
 
 var AvailableArmorColumns = [
-  { key: 'Name', label: 'Name', sortable: true },
-  { key: 'Cost', label: 'Cost' },
+  { key: 'Name', label: 'Name', sortable: true, width: 150 },
+  { key: 'Cost', label: 'Cost', width: 50 },
   { key: 'AC_Bonus', label: 'AC', sortable: true },
   { key: 'Maximum', label: 'Max Dex' },
   { key: 'Check_Penalty', label: 'Check Penalty' },
@@ -84,13 +96,68 @@ var AvailableGoodsFields = [
   'Weight',
   'copper_cost',
   'halfpound_weight',
-  'last_parent'
+  'set',
+  'category'
 ];
 
 var AvailableGoodsColumns = [
-  { key: 'Name', label: 'Name', sortable: true },
-  { key: 'Cost', label: 'Cost' },
+  { key: 'Name', label: 'Name', sortable: true, width: 150 },
+  { key: 'Cost', label: 'Cost', width: 50 },
   { key: 'Weight', label: 'Weight' }
+];
+
+var AvailableAlchemicalWeaponsFields = [
+  'Name',
+  'Cost',
+  'Dmg',
+  'Critical',
+  'Range',
+  'Weight',
+  'Type',
+  'Special',
+  'copper_cost',
+  'halfpound_weight',
+  'set',
+  'category'
+];
+
+var AvailableAlchemicalWeaponsColumns = [
+  { key: 'Name', label: 'Name', sortable: true, width: 150 },
+  { key: 'Cost', label: 'Cost', width: 50 },
+  { key: 'Dmg', label: 'Dmg' },
+  { key: 'Critical', label: 'Critical' },
+  { key: 'Range', label: 'Range' },
+  { key: 'Weight', label: 'Weight' },
+  { key: 'Type', label: 'Type' },
+  { key: 'Special', label: 'Special', width: 150 }
+];
+
+var AvailablePoisonsFields = [
+  'Name',
+  'Cost',
+  'Fort_DC',
+  'Onset',
+  'Frequency',
+  'Effect',
+  'Cure',
+  'Weight',
+  'Type',
+  'copper_cost',
+  'halfpound_weight',
+  'set',
+  'category'
+];
+
+var AvailablePoisonsColumns = [
+  { key: 'Name', label: 'Name', sortable: true, width: 150 },
+  { key: 'Cost', label: 'Cost', width: 50 },
+  { key: 'Fort_DC', label: 'Fort DC' },
+  { key: 'Onset', label: 'Onset' },
+  { key: 'Frequency', label: 'Frequency' },
+  { key: 'Effect', label: 'Effect' },
+  { key: 'Cure', label: 'Cure' },
+  { key: 'Weight', label: 'Weight' },
+  { key: 'Type', label: 'Type' }
 ];
 
 var SelectedEquipmenFields = [
@@ -100,7 +167,8 @@ var SelectedEquipmenFields = [
   'Type',
   'Qty',
   'base_name',
-  'last_parent'
+  'set',
+  'category'
 ];
 
 var SelectedEquipmentColumns = [
@@ -125,6 +193,38 @@ var ArmorModifiers = [
   { label: "Mithral", modifier: "mithral" },
   { label: "Darkwood", modifier: "darkwood" },
   { label: "Dragonhide", modifier: "dragonhide" }
+];
+
+// UI tab to data mapping.
+// These entries each specify a tab in a table that will be filled with
+// data that matches the specified filter (defined as a query passed to /equipment URL).
+var TabsAndData = [
+  { parent_tab: "weapons", label: "Simple", div_id: "simple_weapons", query: "type=weapons&set=Simple Weapons", fields: AvailableWeaponFields, columns: AvailableWeaponColumns },
+  { parent_tab: "weapons", label: "Martial", div_id: "martial_weapons", query: "type=weapons&set=Martial Weapons", fields: AvailableWeaponFields, columns: AvailableWeaponColumns },
+  { parent_tab: "weapons", label: "Exotic", div_id: "exotic_weapons", query: "type=weapons&set=Exotic Weapons", fields: AvailableWeaponFields, columns: AvailableWeaponColumns },
+  { parent_tab: "weapons", label: "Ammunition", div_id: "ammunition", query: "type=weapons&set=Ammunition", fields: AvailableWeaponFields, columns: AvailableAmmunitionColumns},
+
+  { parent_tab: "armor", label: "Light", div_id: "light_armor", query: "type=armor&category=Light Armor", fields: AvailableArmorFields, columns: AvailableArmorColumns},
+  { parent_tab: "armor", label: "Medium", div_id: "medium_armor", query: "type=armor&category=Medium Armor", fields: AvailableArmorFields, columns: AvailableArmorColumns},
+  { parent_tab: "armor", label: "Heavy", div_id: "heavy_armor", query: "type=armor&category=Heavy Armor", fields: AvailableArmorFields, columns: AvailableArmorColumns},
+  { parent_tab: "armor", label: "Shields", div_id: "shields", query: "type=armor&category=Shields", fields: AvailableArmorFields, columns: AvailableArmorColumns},
+  { parent_tab: "armor", label: "Extras", div_id: "extras_armor", query: "type=armor&category=Extras", fields: AvailableArmorFields, columns: AvailableArmorColumns},
+
+  { parent_tab: "goods", label: "Adventuring Gear", div_id: "goods_adventuring_gear", query: "type=goods&set=Adventuring Gear", fields: AvailableGoodsFields, columns: AvailableGoodsColumns},
+  { parent_tab: "goods", label: "Tools and Skill Kits", div_id: "tools_and_skill_kits_goods", query: "type=goods&set=Tools and Skill Kits", fields: AvailableGoodsFields, columns: AvailableGoodsColumns},
+  { parent_tab: "goods", label: "Clothing", div_id: "clothing_goods", query: "type=goods&set=Clothing", fields: AvailableGoodsFields, columns: AvailableGoodsColumns},
+  { parent_tab: "goods", label: "Food and Drink", div_id: "food_goods", query: "type=goods&set=Food and Drink", fields: AvailableGoodsFields, columns: AvailableGoodsColumns},
+  { parent_tab: "goods", label: "Pets and Familiars", div_id: "pets_goods", query: "type=goods&set=Pets and Familiars", fields: AvailableGoodsFields, columns: AvailableGoodsColumns},
+  { parent_tab: "goods", label: "Guard and Hunting Animals", div_id: "guard_goods", query: "type=goods&set=Guard and Hunting Animals", fields: AvailableGoodsFields, columns: AvailableGoodsColumns},
+  { parent_tab: "goods", label: "Farm and Work Animals", div_id: "farm_goods", query: "type=goods&set=Farm and Work Animals", fields: AvailableGoodsFields, columns: AvailableGoodsColumns},
+  { parent_tab: "goods", label: "Mounts", div_id: "mounts_goods", query: "type=goods&set=Mounts", fields: AvailableGoodsFields, columns: AvailableGoodsColumns},
+  { parent_tab: "goods", label: "Animal Related Gear", div_id: "animal_gear_goods", query: "type=goods&set=Animal Related Gear", fields: AvailableGoodsFields, columns: AvailableGoodsColumns},
+  { parent_tab: "goods", label: "Alchemical Remedies", div_id: "alchemical_remedies_goods", query: "type=goods&set=Alchemical Remedies", fields: AvailableGoodsFields, columns: AvailableGoodsColumns},
+  { parent_tab: "goods", label: "Alchemical Tools", div_id: "alchemical_tools_goods", query: "type=goods&set=Alchemical Tools", fields: AvailableGoodsFields, columns: AvailableGoodsColumns},
+  { parent_tab: "goods", label: "Alchemical Weapons", div_id: "alchemical_weapons", query: "type=goods&set=Alchemical Weapons", fields: AvailableAlchemicalWeaponsFields, columns: AvailableAlchemicalWeaponsColumns},
+  { parent_tab: "goods", label: "Entertainment", div_id: "entertainment_goods", query: "type=goods&set=Entertainment", fields: AvailableGoodsFields, columns: AvailableGoodsColumns},
+  { parent_tab: "goods", label: "Poisons", div_id: "poisons_goods", query: "type=goods&set=Poisons", fields: AvailablePoisonsFields, columns: AvailablePoisonsColumns}
+
 ];
 
 /**** End Equipment Fields ****/
@@ -180,6 +280,63 @@ function Modifier(name)
   this.unapply = Modifier_unapply;
 }
 
+// Return a list of modifiers as would be shown in the menu
+// (each one has a label and modifier (name) field)
+function allowedModifiersInMenuFormat(data)
+{
+  var result = [];
+  var modifiers = [];
+  if( data['Type'] == "Weapon" )
+  {
+    console.log("Modifying weapon");
+    modifiers = WeaponModifiers;
+
+    for(var i = 0; i < modifiers.length; i++)
+    {
+      if ( data['business_end_material'] != "metal" ){
+        if ( modifiers[i].modifier == 'silver' || 
+             modifiers[i].modifier == 'cold_iron')
+          continue;
+      }
+      if ( data['business_end_material'] != "wood" ){
+        if ( modifiers[i].modifier == 'darkwood' )
+          continue;
+      }
+      result.push(modifiers[i]);
+    }
+  }
+  else if( data['Type'] == "Armor" )
+  {
+    console.log("Modifying armor");
+    modifiers = ArmorModifiers;
+
+    for(var i = 0; i < modifiers.length; i++)
+    {
+      if ( data['business_end_material'] != "metal" ){
+        if ( modifiers[i].modifier == 'mithral' )
+          continue;
+      }
+      if ( data['business_end_material'] != "wood" ){
+        if ( modifiers[i].modifier == 'darkwood' )
+          continue;
+      }
+      result.push(modifiers[i]);
+    }
+  }
+  else if( data['Type'] == "Good" )
+  {
+    console.log("Modifying good");
+    modifiers = [{label: " ", modifierName: " "}];
+  }
+  else
+  {
+    console.log("Asked to modify unknown item type. Giving up.");
+    return result;
+  }
+
+  return result;
+}
+
 // Factory function. Create a Modifier object of the specified modifierName
 // (silver, masterwork, etc) and if needed use the specified rowData for the row
 // being modified to help build the object.
@@ -199,16 +356,16 @@ function createModifier(modifierName, rowData)
     {
       // "The masterwork quality adds 300 gp to the cost of a normal weapon (or 6 gp to the cost of a single unit of ammunition)"
       // We detect ammunition here by looking for a quantity in parenthesis after the name, i.e. "Arrows (20)"
-      match = matchAmmunition(rowData['Name']);
-      if ( match != null )
+      modifier.costModifier = 30000;
+      if ( rowData['set'] == 'Ammunition' )
       {
-        // Ammunition. Add 6gp per unit.
-        modifier.costModifier = parseInt(match[1])*600;
+        var match = matchAmmunition(rowData['Name']);
+        if ( match != null )
+        {
+          // Ammunition. Add 6gp per unit.
+          modifier.costModifier = parseInt(match[1])*600;
+        }
       } 
-      else
-      {
-        modifier.costModifier = 30000;
-      }
     } 
     else
     {
@@ -220,25 +377,22 @@ function createModifier(modifierName, rowData)
   }
   else if ( modifierName == "silver" )
   {
-    match = matchAmmunition(rowData['Name']);
-    if ( match != null ){
-      // Ammunition
+    if ( rowData['set'] == 'Ammunition' ){
       modifier.costModifier = 200;
     }
-    else if ( rowData['last_parent'] == 'Light Melee Weapons' )
+    else if ( rowData['category'] == 'Light Melee Weapons' )
     {
       modifier.costModifier = 2000;
     }
-    else if ( rowData['last_parent'] == 'One-Handed Melee Weapons' )
+    else if ( rowData['category'] == 'One-Handed Melee Weapons' )
     {
       modifier.costModifier = 9000;
     }
-    else if ( rowData['last_parent'] == 'Two-Handed Melee Weapons' )
+    else if ( rowData['category'] == 'Two-Handed Melee Weapons' )
     {
       modifier.costModifier = 18000;
     }
 
-    console.log("Last parent: " + rowData['last_parent']);  
   }
   else if ( modifierName == "cold_iron" )
   {
@@ -253,24 +407,24 @@ function createModifier(modifierName, rowData)
     modifier.arcaneFailureModifier = -10;
     // We use parseInt here since arcane_failure is of the form 30%, and we want to ignore the %. 
     if ( modifier.arcaneFailureModifier + parseInt(rowData['Arcane_Failure']) < 0 )
-      modifier.arcaneFailureModifier -= modifier.arcaneFailureModifier + Number(rowData['Arcane_Failure']);
+      modifier.arcaneFailureModifier -= modifier.arcaneFailureModifier + parseInt(rowData['Arcane_Failure']);
 
     modifier.maxDexModifier = 2;
     modifier.weightFactor = 0.5;
 
-    if( rowData['last_parent'] == 'Light armor' )
+    if( rowData['category'] == 'Light Armor' )
     {
        modifier.costModifier = 100000;
     }
-    else if( rowData['last_parent'] == 'Medium armor' )
+    else if( rowData['category'] == 'Medium Armor' )
     {
        modifier.costModifier = 400000;
     }
-    else if( rowData['last_parent'] == 'Heavy armor' )
+    else if( rowData['category'] == 'Heavy Armor' )
     {
        modifier.costModifier = 900000;
     }
-    else if( rowData['last_parent'] == 'Shields' )
+    else if( rowData['category'] == 'Shields' )
     {
        modifier.costModifier = 100000;
     }
@@ -282,7 +436,7 @@ function createModifier(modifierName, rowData)
   else if( modifierName == "darkwood" )
   {
     // Is it for a shield?
-    if( rowData['last_parent'] == "Shields" )
+    if( rowData['category'] == "Shields" )
     {
       modifier.checkPenaltyModifier = 2;
       if ( modifier.checkPenaltyModifier + Number(rowData['Check_Penalty']) > 0 )
@@ -324,7 +478,7 @@ function Modifier_apply(rowData)
       rowData['Arcane_Failure'] = String(parseInt(rowData['Arcane_Failure']) + this.arcaneFailureModifier) + "%";
 
     if ( "Maximum" in rowData )
-      rowData['Maximum'] = "+" + String(Number(rowData['Maximum']) + this.maxDexModifier);
+      rowData['Maximum'] = "+" + String(parsePrdNumber(rowData['Maximum']) + this.maxDexModifier);
     
   }   
   catch(e)
@@ -348,7 +502,7 @@ function Modifier_unapply(rowData)
     rowData['Arcane_Failure'] = String(parseInt(rowData['Arcane_Failure']) - this.arcaneFailureModifier) + "%";
 
   if ( "Maximum" in rowData )
-    rowData['Maximum'] = "+" + String(Number(rowData['Maximum']) - this.maxDexModifier);
+    rowData['Maximum'] = "+" + String(parsePrdNumber(rowData['Maximum']) - this.maxDexModifier);
 }
 
 /**** End Classes ****/
@@ -432,23 +586,6 @@ function GenerateXmlCallback(){
 function cloneArray(a){
   return a.slice(0);
 }
-
-/**
- Given a weapon name, perform a check to see if the name is for ammunition.
- If it is not, null is returned. If it is, a regex match is returned, with
- element 1 set to the quantity of ammunition in the name (i.e. for Arrows (20)
- the quantity is 20)
-*/
-function matchAmmunition(name){
-  // Create some regex as static variables
-  if ( typeof(matchAmmunition.ammunitionRegex) == 'undefined' ) 
-  {
-    matchAmmunition.ammunitionRegex = /\((\d+)\)$/
-  }
-
-  return matchAmmunition.ammunitionRegex.exec(name);
-}
-
 
 function getSelectedListName()
 {
@@ -553,7 +690,11 @@ function convertAvailableRecordToSelectedHash(record, qty, type)
   result['base_copper_cost'] = record.getData('copper_cost');
   result['base_halfpound_weight'] = record.getData('halfpound_weight');
   result['modifiers']  = {};
-  result['last_parent']  = record.getData('last_parent');
+  result['set']  = record.getData('set');
+  result['category']  = record.getData('category');
+  result['business_end_material'] = record.getData('business_end_material');
+  result['holding_end_material'] = record.getData('holding_end_material');
+
   v = record.getData('Check_Penalty');
   if(v)
     result['Check_Penalty'] = v;
@@ -593,6 +734,30 @@ function makeAvailableEquipmentTable(fieldsDef, columnDef, elementId)
   return availEqTable;
 }
 
+/** 
+This function creates a tab that contains a table of available item information. The tab
+is added to the tabView with the tab label 'label'. A div is created for the table with id
+'tableElementId' and the table is created with the specified fields and columns.
+
+The YAHOO.widget.ScrollingDataTable created inside the tab is returned from this function.
+*/
+function makeAvailableEquipmentTab(tabView, label, tableElementId, fieldsDef, columnDef)
+{
+  tabView.addTab( new YAHOO.widget.Tab({
+    label: label,
+    content: '<div id="'+tableElementId+'">Loading...</div>',
+    active: true
+  }));
+  // Get the tab we just made
+  //var tab = tabView.tabs[tabView.tabs.length-1]
+  var tabs = tabView.get('tabs');
+  var tab = tabs[tabs.length-1]
+  var table = makeAvailableEquipmentTable(fieldsDef, columnDef, tableElementId);
+  // Add a reference to the table we just made to the tab
+  tab.prdItemTable = table;
+  return table;
+}
+
 // Update the total cost and total quantity of the selected list
 function updateSelectedEquipmentTotals()
 {
@@ -622,7 +787,51 @@ function getFrameByName(name) {
       return frames[i];
         
   return null;
-}     
+}
+
+/**
+ Given a weapon name, perform a check to see if the name is for ammunition.
+ If it is not, null is returned. If it is, a regex match is returned, with
+ element 1 set to the quantity of ammunition in the name (i.e. for Arrows (20)
+ the quantity is 20)
+*/
+function matchAmmunition(name){
+  // Create some regex as static variables
+  if ( typeof(matchAmmunition.ammunitionRegex) == 'undefined' ) 
+  {
+    matchAmmunition.ammunitionRegex = /\((\d+)\)$/
+  }
+
+  return matchAmmunition.ammunitionRegex.exec(name);
+}
+
+function logSelectedEquipmentInfo(){
+
+  console.log("Highlighted rows in selected equipment:")
+  selectedRowIds = UI.selectedEquipmentTable.getSelectedRows();
+  for(var i = 0; i < selectedRowIds.length; i++) {
+    record = UI.selectedEquipmentTable.getRecord(selectedRowIds[i]);
+    hash = record.getData();
+    for( var k in hash ){
+      if (hash.hasOwnProperty(k)) { 
+        console.log("  '"+k+"' = '"+hash[k]+"'");
+      }
+    }
+
+  } 
+}
+
+/* 
+  Handles special cases when parsing PRD numbers.
+  For example, zero when sent back from the server-side is &amp;mdash;
+*/
+function parsePrdNumber(num)
+{
+  if ( num == '&mdash;' )
+    return 0;
+  return parseInt(num);
+}
+
 
 /**** End Utility Functions ****/
 
@@ -655,28 +864,7 @@ function onModifierMenuShow(type, args)
 
     var record = UI.selectedEquipmentTable.getRecord(selectedRowIds[0]);
     data = record.getData();
-    var modifiers = null;
-    if( data['Type'] == "Weapon" )
-    {
-      console.log("Modifying weapon");
-      modifiers = WeaponModifiers;
-    }
-    else if( data['Type'] == "Armor" )
-    {
-      console.log("Modifying armor");
-      modifiers = ArmorModifiers;
-    }
-    else if( data['Type'] == "Good" )
-    {
-      console.log("Modifying good");
-      modifiers = [{label: " ", modifierName: " "}];
-    }
-    else
-    {
-      console.log("Asked to modify unknown item type. Giving up.");
-      return;
-    }
-
+    var modifiers = allowedModifiersInMenuFormat(data);
     for(var m = 0; m < modifiers.length; m++)
     {
       // Is this row item already modified?
@@ -705,9 +893,6 @@ function onModifierMenuShow(type, args)
 }
 
 function toggleSelectedItemModifier(type, args, obj){
-  //var checked = this.cfg.getProperty("checked");
-  //checked = ! checked;
-  //this.cfg.setProperty("checked", checked); 
 
   try{
     // Find the affected equipment rows
@@ -786,6 +971,70 @@ function clearSelectedEquipment(){
   UI.selectedEquipmentTable.render();
 }
 
+/**
+Based on which top-level tab is selected, return
+weapon, armor or good.
+*/
+function getSelectedItemType()
+{
+  var type = null;
+  var tabIndex = UI.tabview.get('activeIndex');
+
+  if ( tabIndex == 0 ){
+    type = "Weapon";
+  }
+  else if ( tabIndex == 1 ){
+    type = "Armor";
+  }
+  else if ( tabIndex == 2 ){
+    type = "Good";
+  }
+  else{
+    console.log("getSelectedItemType: unknown tab index");
+    return null;
+  }
+
+  return type;
+}
+
+/**
+Get the table that is shown in the selected tab and subtab.
+*/
+function getSelectedTable()
+{
+  try 
+  {
+    var view = null;
+    var tabIndex = UI.tabview.get('activeIndex');
+
+    console.log("getSelectedTable: active tab index = " + tabIndex);
+
+    if ( tabIndex == 0 ){
+      view = UI.weaponsTabview;
+    } 
+    else if ( tabIndex == 1 ){
+      view = UI.armorTabview;
+    }
+    else if ( tabIndex == 2 ){
+      view = UI.goodsTabview
+    }
+    else{
+      console.log("addSelectedEquipment: unknown tab index");
+      return null;
+    } 
+    var table = view.get('activeTab').prdItemTable;
+
+    console.log("getSelectedTable: table = " + table);
+    // Get the table
+    return table;
+  } catch(e)
+  {
+    console.log("getSelectedTable: exception: " + e); 
+    if ( ! (typeof(e.stack) === 'undefined') )
+      console.log(e.stack);
+  }
+}
+
 function addSelectedEquipment(e)
 {
   // Figure out what equipment list we are going to add from, based on the active tab.
@@ -793,22 +1042,12 @@ function addSelectedEquipment(e)
   var table = null;
   var type = null;
 
-  if ( tabIndex == 0 ){
-    table = UI.availWeaponTable;
-    type = "Weapon";
-  } 
-  else if ( tabIndex == 1 ){
-    table = UI.availArmorTable;
-    type = "Armor";
-  }
-  else if ( tabIndex == 2 ){
-    table = UI.availGoodsTable
-    type = "Good";
-  }
-  else{
-    console.log("addSelectedEquipment: unknown tab index");
+  table = getSelectedTable();
+  type = getSelectedItemType();
+  if( table == null || type == null )
+  {
     return;
-  }
+  }  
 
   try {
     selectedRowIds = table.getSelectedRows();
@@ -880,6 +1119,70 @@ function handleIframeLoad(frameName)
   } 
 } 
 
+function selectedEquipmentRowSelected(element, record)
+{
+  // When a row is selected, update the list of modifiers in the context 
+  // menu in case the user right-clicks.
+  try{
+    var selectedRowIds = UI.selectedEquipmentTable.getSelectedRows();
+    if ( selectedRowIds.length == 0 )
+      return true;
+    var record = UI.selectedEquipmentTable.getRecord(selectedRowIds[0]);
+    data = record.getData();
+    console.log("Selected row " + data['Name']);
+
+    var modifiersSubmenu = UI.menu.getSubmenus()[0];
+
+    modifiersSubmenu.clearContent();
+    console.log("onModifierMenuShow: clearing ");
+
+    var modifiers = null;
+    if( data['Type'] == "Weapon" )
+    {
+      console.log("Modifying weapon");
+      modifiers = WeaponModifiers;
+    }
+    else if( data['Type'] == "Armor" )
+    {
+      console.log("Modifying armor");
+      modifiers = [];
+    }
+    else if( data['Type'] == "Good" )
+    {
+      console.log("Modifying good");
+      modifiers = [];
+    }
+    else
+    {
+      console.log("Asked to modify unknown item type. Giving up.");
+      return;
+    }
+
+    for(var m = 0; m < modifiers.length; m++)
+    {
+      // Is this row item already modified?
+      var modifierName = modifiers[m].modifier;
+      var checkedVar = (modifierName in data.modifiers);
+      console.log("checked: " + checkedVar);
+      console.log("Adding menu item for modifier " + modifierName);
+   
+      modifiersSubmenu.addItem(
+        { text: modifiers[m].label, onclick: { fn: toggleSelectedItemModifier, obj: modifierName, checked: checkedVar } }
+      );
+      var items = modifiersSubmenu.getItems();
+      items[items.length-1].cfg.setProperty("checked", checkedVar);
+    }
+
+    modifiersSubmenu.render(document.body);
+  }
+  catch(e)
+  {
+    console.log("selectedEquipmentRowSelected: exception: " + e);
+    if ( ! (typeof(e.stack) === 'undefined') )
+      console.log(e.stack);
+  }
+}
+
 /**** End Event handlers ****/
 
 
@@ -891,6 +1194,11 @@ YAHOO.util.Event.addListener(window, "load", function() {
   UI.generatePdfButton = new YAHOO.widget.Button("generate_pdf");
   UI.saveXmlButton = new YAHOO.widget.Button("save_xml");
   UI.loadXmlButton = new YAHOO.widget.Button("load_xml");
+  if(document.getElementById("devmode_log_selected_info") != null)
+  {
+    UI.devmodeShowSelectedInfoButton = new YAHOO.widget.Button("devmode_log_selected_info");
+    UI.devmodeShowSelectedInfoButton.on('click', logSelectedEquipmentInfo);
+  }
 
   // Attach a listener to the #add button
   UI.addButton.on('click', addSelectedEquipment);
@@ -914,43 +1222,64 @@ YAHOO.util.Event.addListener(window, "load", function() {
   UI.tabview = new YAHOO.widget.TabView("available_tabview"); 
   UI.tabview.addTab( new YAHOO.widget.Tab({
     label: 'Weapons',
-    content: '<div id="available_weapons">Loading Weapons...</div>',
+    content: '<div id="available_weapons"></div>',
     active: true
   }));
 
   UI.tabview.addTab( new YAHOO.widget.Tab({
     label: 'Armor',
-    content: '<div id="available_armor">Loading Armor...</div>'
+    content: '<div id="available_armor"></div>'
   }));
    
   UI.tabview.addTab( new YAHOO.widget.Tab({
       label: 'Goods and Services',
-      content: '<div id="available_goods">Loading Goods...</div>'
+      content: '<div id="available_goods"></div>'
   }));
+
+  UI.weaponsTabview = new YAHOO.widget.TabView("available_weapons", { orientation: "left"});
+  UI.armorTabview = new YAHOO.widget.TabView("available_armor", { orientation: "left"});
+  UI.goodsTabview = new YAHOO.widget.TabView("available_goods", { orientation: "left"});
  
-  /*** Available Equipment Tables ***/
-  UI.availWeaponTable = makeAvailableEquipmentTable(AvailableWeaponFields, AvailableWeaponColumns, "available_weapons");
-  UI.availArmorTable = makeAvailableEquipmentTable(AvailableArmorFields, AvailableArmorColumns, "available_armor");
-  UI.availGoodsTable = makeAvailableEquipmentTable(AvailableGoodsFields, AvailableGoodsColumns, "available_goods");
-  /*** End Available Equipment Tables ***/
+  UI.tables = [];
+  for(var i = 0; i < TabsAndData.length; i++)
+  {
+    descriptor = TabsAndData[i];
+    var table = null;
+    if (descriptor.parent_tab == "weapons" )
+    {
+      table = makeAvailableEquipmentTab(UI.weaponsTabview, descriptor.label, descriptor.div_id, descriptor.fields, descriptor.columns);
+    }
+    else if (descriptor.parent_tab == "armor" )
+    {
+      table = makeAvailableEquipmentTab(UI.armorTabview, descriptor.label, descriptor.div_id, descriptor.fields, descriptor.columns);
+    }
+    else if (descriptor.parent_tab == "goods" )
+    {
+      table = makeAvailableEquipmentTab(UI.goodsTabview, descriptor.label, descriptor.div_id, descriptor.fields, descriptor.columns);
+    }
+
+    UI.tables.push(table);
+    /* Load data using AJAX */
+    var transaction = YAHOO.util.Connect.asyncRequest('GET', "/equipment?" + descriptor.query, new LoadDataCallback(table), null);
+  }
+  UI.weaponsTabview.selectTab(0);
+  UI.armorTabview.selectTab(0);
+  UI.goodsTabview.selectTab(0);
 
   UI.selectedEquipmentTable = makeAvailableEquipmentTable(SelectedEquipmenFields, SelectedEquipmentColumns, "selected_equipment");
   UI.selectedEquipmentTable.showTableMessage("(add some equipment)");
   //UI.selectedEquipmentTable.subscribe("rowSelectEvent", selectedEquipmentRowSelected);
 
-  /* Load data using AJAX */
-  var transaction = YAHOO.util.Connect.asyncRequest('GET', "/equipment?type=weapons", new LoadDataCallback(UI.availWeaponTable), null);
-  var transaction = YAHOO.util.Connect.asyncRequest('GET', "/equipment?type=armor", new LoadDataCallback(UI.availArmorTable), null);
-  var transaction = YAHOO.util.Connect.asyncRequest('GET', "/equipment?type=goods", new LoadDataCallback(UI.availGoodsTable), null);
-
   YAHOO.util.Event.addListener("qty", "change", correctNumberInInputField);
  
   // Context menu
-  // Disable the context menu for now
+  // Context menu is not working right for Ultimate equipment: the last_parent field no longer exists.
+
   UI.menu = new YAHOO.widget.ContextMenu("available_weapons_menu",{ 
     trigger: "selected_equipment",
     lazyload: true
   });
+  
   UI.menu.addItems([
     { text: "Modify",
       submenu: {
@@ -963,6 +1292,7 @@ YAHOO.util.Event.addListener(window, "load", function() {
       }
     },
   ]);
+  
   //UI.menu.subscribe("show", function (type, args){console.log("Context menu show. arr: " + this.getSubmenus()[0].getItems()[0].cfg.getProperty("text"));});
   UI.menu.subscribe("show", onModifierMenuShow);
 

@@ -18,6 +18,44 @@ class EquipmentManager
   attr_reader :weaponList, :armorList, :goodList
   attr_reader :weaponHash, :armorHash, :goodHash
 
+  # Return a list of equipment matching the passed filter.
+  # The filter is a hash where the key is a field name, and the value is 
+  # the value of a field. Only items matching the filter are returned.
+  # The 'type' key is used to distinguish 'weapons', 'armor', and 'goods'.
+  # The type key is mandatory!
+  #
+  # This method throws exceptions.
+  def filteredList(filter)
+    list = nil
+    if filter['type'] == 'weapons'
+      list = @weaponList
+    elsif filter['type'] == 'armor'
+      list = @armorList
+    elsif filter['type'] == 'goods'
+      list = @goodList
+    else
+      raise "Unknown equipment type #{filter['type']}"
+    end
+    filter = filter.select{ |k,v| k != 'type'}
+
+    if filter.size == 0
+      # Optimized case: only filtered on type. 
+      return list
+    end
+
+    result = list.select do |item|
+      match = true
+      filter.each do |k,v|
+        if item[k] != v
+          match = false
+          break
+        end
+      end
+      match
+    end
+    result
+  end
+
   private 
   # Load the equipment from the specified XML file into a list of property hashes.
   def read(file)
@@ -60,5 +98,6 @@ class EquipmentManager
     JSON.parse CGI.unescape(equipment)
   end
  
+
 end
 
